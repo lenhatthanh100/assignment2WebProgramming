@@ -1,0 +1,78 @@
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+.zoom {
+	height: 100%;
+    transition: transform .2s;
+}
+.zoom:hover {
+    transform: scale(0.9);
+    background-color: #8FBC8F;
+}
+.logo{
+	width: 100px;
+}
+.titleOfNavbar{
+	font-size: 22px;	
+}
+.marginTop {
+	margin-top: 85px;
+}
+.colorLienHe{
+	color: #D13138;
+}
+.tableHome {
+	color: #D13138;
+}
+.tableHome:hover {
+	background-color: #AAA;
+}
+.new {
+	color: #D13138;
+}
+.scaleImage {
+	width: 100%;
+	height: 500px;
+}
+.scaleImageFullWidth {
+	width: 100%;
+}
+.scaleNew {
+	height: 200px;
+	width: 100%;
+}
+.scaleTrangChu{
+	height: 480px;
+}
+.scaleDichVuSanPham {
+	height: 480px;
+}
+.scaleDichVuSanPhamVinsmart {
+	height: 620px;
+}
+.scaleDichVuSanPhamVinfast {
+	height: 430px;
+}
+.scaleDichVuSanPhamVinhome {
+	height: 580px;
+}
+.bottom-center { 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+.bigFontBadge {
+	font-size: large;
+} 
+div.gallery {
+  border: 1px solid #ccc;
+  float: left;
+}
+div.gallery:hover {
+  border: 2px solid #777;
+}
+div.desc {
+  padding: 5px;
+  text-align: center;
+}
