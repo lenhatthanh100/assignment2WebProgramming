@@ -66,13 +66,13 @@
 	font-size: large;
 } 
 div.gallery {
-  border: 1px solid #ccc;
-  float: left;
+	border: 1px solid #ccc;
+	float: left;
 }
 div.gallery:hover {
-  border: 2px solid #777;
+	border: 2px solid #777;
 }
 div.desc {
-  padding: 5px;
-  text-align: center;
+	padding: 5px;
+	text-align: center;
 }
