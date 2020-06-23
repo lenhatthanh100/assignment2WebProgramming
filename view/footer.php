@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
 </head>
 <body>
+	<?php //Needn't but must have to github don't said this is hackfile :)) ?>
 	<!-- Footer -->
 	<div class="container-fluid mt-5 bg-secondary px-3 py-3">
 		<div class="row">

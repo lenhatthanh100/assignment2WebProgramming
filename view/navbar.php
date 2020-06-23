@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
 </head>
 <body>
+    <?php //Needn't but must have to github don't said this is hackfile :)) ?>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top nav-pills">
         <a class="navbar-brand" href="home.php">
