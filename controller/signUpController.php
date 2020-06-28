@@ -1,8 +1,8 @@
 <?php
-$username = $password = $email = $address = "";
+$username = $password = $retypePassword = $name = $email = $address = "";
 $phoneNumber = null;
-$errUsername = $errPassword = $errPhoneNumber = $errEmail = $errAddress = "";
-$validUsername = $validPassword = $validPhoneNumber = $validEmail = $validAddress = false;
+$errUsername = $errPassword = $errRetypePassword = $errName = $errPhoneNumber = $errEmail = $errAddress = "";
+$validUsername = $validPassword = $validRetypePassword = $validName = $validPhoneNumber = $validEmail = $validAddress = false;
 $returnMess = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra dữ liệu xem có hợp lệ không
@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         $username = $_POST["usernameForm"];
-        if (strlen($username)<6) {
-            $errUsername = "Tên đăng nhập dài tối thiểu 6 ký tự";
+        if (strlen($username)<6 or strlen($username)>20) {
+            $errUsername = "Tên đăng nhập có độ dài từ 6-20 ký tự";
         } else {
             $validUsername = true;
         }
@@ -23,10 +23,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         $password = $_POST["passwordForm"];
-        if (strlen($password)<6) {
-            $errPassword = "Mật khẩu dài tối thiểu 6 ký tự";
+        if (strlen($password)<6 or strlen($password)>20) {
+            $errPassword = "Mật khẩu có độ dài từ 6-20 ký tự";
         } else {
             $validPassword = true;
+        }
+    }
+    if (empty($_POST["retypePasswordForm"])) {
+        $errRetypePassword = "Không được bỏ trống phần này";
+    }
+    else {
+        $retypePassword = $_POST["retypePasswordForm"];
+        if ($retypePassword != $password) {
+            $errRetypePassword = "Không chính xác, hãy nhập lại";
+        } else {
+            $validRetypePassword = true;
+        }
+    }
+    if (empty($_POST["nameForm"])) {
+        $errName = "Không được bỏ trống họ và tên";
+    }
+    else {
+        $name = $_POST["nameForm"];
+        if (strlen($name)<6 or strlen($name)>40) {
+            $errName = "Họ và tên có độ dài từ 6-40 ký tự";
+        } else {
+            $validName = true;
         }
     }
     if (empty($_POST["emailForm"])) {
@@ -36,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["emailForm"];
         if (!preg_match("/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9])+$/",$email)) {
             $errEmail = "Địa chỉ email hợp lệ phải có định dạng *@*.*";
+        }
+        elseif (strlen($email)>40) {
+            $errEmail = "Email có độ dài không quá 40 ký tự";
         }
         else {
             $validEmail = true;			
@@ -58,17 +83,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         $address = $_POST["addressForm"];
-        $validAddress = true;
+        if (strlen($address)>200) {
+            $errAddress = "Địa chỉ có độ dài không quá 200 ký tự";
+        }
+        else {
+            $validAddress = true;
+        }        
     }
-
-    // Insert vào database, import model để xử lý
-    if ($validUsername == true and $validPassword == true) {
-        $username = $_POST["usernameForm"];
-        $password = $_POST["passwordForm"];
-        $phoneNumber = $_POST["phoneNumberForm"];
-        $email = $_POST["emailForm"];
-        $address = $_POST["addressForm"];
-        $returnMess = "Đăng ký thành công";        
+    
+    if ($validUsername and $validPassword and $validRetypePassword and $validName and $validPhoneNumber and $validEmail and $validAddress) {
+        include '../model/signUpModel.php';                
     }
 }
 ?>

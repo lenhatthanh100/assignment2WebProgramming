@@ -21,37 +21,51 @@
 			<h2 class="text-primary mb-3 ml-3">Đăng ký</h2>
 			<form class="form-horizontal" method="POST">
 				<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="email">Tên đăng nhập</label>
+			    	<label class="control-label col-sm-2 font-weight-bold" for="usernameForm">Tên đăng nhập</label>
 			    	<div class="col-sm-10">
-			      		<input type="text" class="form-control" name="usernameForm" placeholder="Nhập tên đăng nhập" value="<?php echo $username; ?>">
+			      		<input type="text" class="form-control" name="usernameForm" id="usernameForm" placeholder="Nhập tên đăng nhập" value="<?php echo $username; ?>">
 			      		<p class="text-danger"><?php echo $errUsername; ?></p>
 			    	</div>			    
 				</div>
 				<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="pwd">Mật khẩu</label>
+			    	<label class="control-label col-sm-2 font-weight-bold" for="passwordForm">Mật khẩu</label>
 			    	<div class="col-sm-10">
-			      		<input type="password" class="form-control" name="passwordForm" placeholder="Nhập mật khẩu" value="<?php echo $password; ?>">
+			      		<input type="password" class="form-control" name="passwordForm" id="passwordForm" placeholder="Nhập mật khẩu" value="<?php echo $password; ?>">
 			      		<p class="text-danger"><?php echo $errPassword; ?></p>
 			    	</div>			    
 				</div>
-            	<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="pwd">Số điện thoại</label>
+				<div class="form-group">
+			    	<label class="control-label col-sm-2 font-weight-bold" for="retypePasswordForm">Nhập lại mật khẩu</label>
 			    	<div class="col-sm-10">
-			      		<input type="number" class="form-control" name="phoneNumberForm" placeholder="Nhập số điện thoại" value="<?php echo $phoneNumber; ?>">
+			      		<input type="password" class="form-control" name="retypePasswordForm" id="retypePasswordForm" placeholder="Nhập lại mật khẩu" value="<?php echo $retypePassword; ?>">
+			      		<p class="text-danger"><?php echo $errRetypePassword; ?></p>
+			    	</div>			    
+				</div>
+				<div class="form-group">
+			    	<label class="control-label col-sm-2 font-weight-bold" for="nameForm">Họ và tên</label>
+			    	<div class="col-sm-10">
+			      		<input type="text" class="form-control" name="nameForm" id="nameForm" placeholder="Nhập họ và tên" value="<?php echo $name; ?>">
+			      		<p class="text-danger"><?php echo $errName; ?></p>
+			    	</div>			    
+				</div>
+            	<div class="form-group">
+			    	<label class="control-label col-sm-2 font-weight-bold" for="phoneNumberForm">Số điện thoại</label>
+			    	<div class="col-sm-10">
+			      		<input type="number" class="form-control" name="phoneNumberForm" id="phoneNumberForm" placeholder="Nhập số điện thoại" value="<?php echo $phoneNumber; ?>">
 			    		<p class="text-danger"><?php echo $errPhoneNumber; ?></p>
 			    	</div>			    
 				</div>
             	<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="pwd">Email</label>
+			    	<label class="control-label col-sm-2 font-weight-bold" for="emailForm">Email</label>
 			    	<div class="col-sm-10">
-			    		<input type="text" class="form-control" name="emailForm" placeholder="Nhập địa chỉ email" value="<?php echo $email; ?>">
+			    		<input type="text" class="form-control" name="emailForm" id="emailForm" placeholder="Nhập địa chỉ email" value="<?php echo $email; ?>">
 			    		<p class="text-danger"><?php echo $errEmail; ?></p>
 			    	</div>			    
 			  	</div>
             	<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="pwd">Địa chỉ</label>
+			    	<label class="control-label col-sm-2 font-weight-bold" for="addressForm">Địa chỉ</label>
 			   		<div class="col-sm-10">
-			    		<input type="text" class="form-control" name="addressForm" placeholder="Số nhà, tên đường, xã/phường, quận/huyện, tỉnh/thành phố" value="<?php echo $address; ?>">
+			    		<input type="text" class="form-control" name="addressForm" id="addressForm" placeholder="Số nhà, tên đường, xã/phường, quận/huyện, tỉnh/thành phố" value="<?php echo $address; ?>">
 			    		<p class="text-danger"><?php echo $errAddress; ?></p>
 			    	</div>			    
 			  	</div>

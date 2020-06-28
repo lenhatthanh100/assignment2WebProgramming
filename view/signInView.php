@@ -21,16 +21,16 @@
 			<h2 class="text-primary mb-3 ml-3">Đăng nhập</h2>
 			<form class="form-horizontal" method="POST">
 				<div class="form-group">
-			    	<label class="control-label col-sm-2 font-weight-bold" for="email">Tên đăng nhập</label>
+			    	<label class="control-label col-sm-2 font-weight-bold" for="usernameForm">Tên đăng nhập</label>
 			    	<div class="col-sm-10">
-			    		<input type="text" class="form-control" name="usernameForm" placeholder="Nhập tên đăng nhập" value="<?php echo $username; ?>">
+			    		<input type="text" class="form-control" name="usernameForm" id="usernameForm" placeholder="Nhập tên đăng nhập" value="<?php echo $username; ?>">
 			    		<p class="text-danger"><?php echo $errUsername; ?></p>
 			    	</div>			    
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2 font-weight-bold" for="pwd">Mật khẩu</label>
+					<label class="control-label col-sm-2 font-weight-bold" for="passwordForm">Mật khẩu</label>
 			    	<div class="col-sm-10">
-			    		<input type="password" class="form-control" name="passwordForm" placeholder="Nhập mật khẩu" value="<?php echo $password; ?>">
+			    		<input type="password" class="form-control" name="passwordForm" id="passwordForm" placeholder="Nhập mật khẩu" value="<?php echo $password; ?>">
 			    		<p class="text-danger"><?php echo $errPassword; ?></p>
 			    	</div>			    
 				</div>
