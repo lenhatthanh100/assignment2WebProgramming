@@ -1,5 +1,5 @@
 <?php
-    include 'accessDatabase.php';      
+    include '../../model/accessDatabase.php';     
     try {     
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

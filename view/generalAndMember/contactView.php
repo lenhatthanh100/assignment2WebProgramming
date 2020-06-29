@@ -4,7 +4,7 @@
 	<title>Liên hệ</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="checkDataForContact.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,12 +13,32 @@
 </head>
 <body>
 	<!-- Import thêm navbar -->
-    <?php include 'navbar.php'; ?>
+    <?php
+	if(isset($_COOKIE["user"])) {
+		$userObject = unserialize($_COOKIE["user"]);
+		// Trường hợp tài khoản member
+		if ($userObject->kind_account == 1) {
+			include 'navbarMember.php';
+		}
+		// Trường hợp tài khoản staff, admin dùng URL để truy cập
+		else {
+			header("location:../404.php");
+		}	
+	}
+	// Trường hợp chưa đăng nhập
+	else {
+		include 'navbarGeneral.php';
+		echo 
+		"<script> if (window.confirm('Bạn chưa đăng ký thành viên? Đăng ký ngay để nhận hàng trăm ưu đãi từ Vingroup!')) {
+			window.location.replace('signUpView.php');
+		} </script>";
+	}	
+	?>
 	<!-- Địa chỉ -->
 	<div class="container-fluid marginTop">		
 		<div class="row mt-5">
 		  <div class="col-md-8">
-		  	<img src="img/map.jpg" class="img-thumbnail" alt="map">
+		  	<img src="../img/map.jpg" class="img-thumbnail" alt="map">
 		  </div>
 		  <div class="col-md-4 mt-5">
 		  	<h2 class="mt-3 font-weight-bold colorLienHe">Tập đoàn Vingroup</h2>
@@ -86,6 +106,22 @@
 		</form>
 	</div>
 	<!-- Import thêm footer -->
-    <?php include 'footer.php'; ?>	
+    <?php
+	if(isset($_COOKIE["user"])) {
+		$userObject = unserialize($_COOKIE["user"]);
+		// Trường hợp tài khoản member
+		if ($userObject->kind_account == 1) {
+			include 'footerMember.php';
+		}
+		// Trường hợp tài khoản staff, admin dùng URL để truy cập
+		else {
+			header("location:../404.php");
+		}
+	}
+	// Trường hợp chưa đăng nhập
+	else {
+		include 'footerGeneral.php';
+	}	
+	?>	
 </body>
 </html>

@@ -3,6 +3,7 @@ $username = $password = $retypePassword = $name = $email = $address = "";
 $phoneNumber = null;
 $errUsername = $errPassword = $errRetypePassword = $errName = $errPhoneNumber = $errEmail = $errAddress = "";
 $validUsername = $validPassword = $validRetypePassword = $validName = $validPhoneNumber = $validEmail = $validAddress = false;
+$duplicateUsername = false;
 $returnMess = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra dữ liệu xem có hợp lệ không
@@ -90,9 +91,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validAddress = true;
         }        
     }
-    
+    // Import model để xử lý  
     if ($validUsername and $validPassword and $validRetypePassword and $validName and $validPhoneNumber and $validEmail and $validAddress) {
-        include '../model/signUpModel.php';                
+        include '../../model/generalAndMember/signUpModel.php';
+        if ($duplicateUsername == true) {
+            $returnMess = "Tên đăng nhập '".$username."' đã được sử dụng, hãy sử dụng tên khác";                       
+        }
+        else {
+            //$returnMess = "Đăng ký thành công";
+            echo "<script type='text/javascript'>alert('Đăng ký thành công');</script>";
+            echo "<script type='text/javascript'>window.location= 'signInView.php';</script>";
+        }                
     }
 }
 ?>

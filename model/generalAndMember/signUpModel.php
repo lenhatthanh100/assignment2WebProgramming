@@ -1,5 +1,5 @@
 <?php
-    include 'accessDatabase.php';
+    include '../../model/accessDatabase.php';
     try {     
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -8,7 +8,7 @@
         $stmt->execute();
         $result = $stmt->fetchAll(); // Dùng fetchAll() để trả về mảng toàn bộ dữ liệu hoặc fetch() để lấy từng hàng        
         if (count($result)>0) {
-            $returnMess = "Tên đăng nhập '".$username."' đã được sử dụng, hãy sử dụng tên khác";
+            $duplicateUsername = true;            
         }
         else {
             $stmt = $conn->prepare("INSERT INTO account (username, password, name, phone_number, email, address, kind_account)
@@ -19,8 +19,7 @@
             $stmt->bindParam(':phoneNumber', $phoneNumber);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':address', $address);
-            $stmt->execute();
-            $returnMess = "Đăng ký thành công";
+            $stmt->execute();            
         }
     }
     catch(PDOException $e) {
