@@ -29,18 +29,31 @@
 		header("location:../404.php");
 	}	
 	?>
+	<script>
+	function showAccountList(str) {
+	  	var xhttp;	  	 
+	  	xhttp = new XMLHttpRequest();
+	  	xhttp.onreadystatechange = function() {
+	    	if (this.readyState == 4 && this.status == 200) {
+	      		document.getElementById("accountList").innerHTML = this.responseText;
+	    	}
+	  	};
+	  	xhttp.open("GET", "../../controller/admin/manageAccountController.php?kindAccount="+str, true);
+	  	xhttp.send();	  		  	
+	}
+	</script>	
 	<!-- Nội dung quản lý tài khoản -->
-	<div class="container marginTop pt-5">
-	<div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                <span>Tùy chọn loại tài khoản</span>
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Tài khoản thành viên</a>
-                <a class="dropdown-item" href="#">Tài khoản nhân viên</a>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid marginTop pt-5">
+		<div class="form-group">
+			<label class="text-primary font-weight-bold" for="manageAccountSelect">Chọn loại tài khoản:</label>
+			<select class="form-control" id="manageAccountSelect" name="manageAccountSelect" onchange="showAccountList(this.value)">
+		    	<option value="member" selected="selected">Tài khoản thành viên</option>
+		    	<option value="staff">Tài khoản nhân viên</option>
+		  	</select>
+		</div>
+		<script type="text/javascript"> showAccountList("member"); </script>
+    	<div id="accountList"></div>
+    </div>    
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {

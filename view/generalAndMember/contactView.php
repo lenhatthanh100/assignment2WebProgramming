@@ -29,7 +29,8 @@
 	else {
 		include 'navbarGeneral.php';
 		echo 
-		"<script> if (window.confirm('Bạn chưa đăng ký thành viên? Đăng ký ngay để nhận hàng trăm ưu đãi từ Vingroup!')) {
+		"<script> 
+			if (window.confirm('Bạn chưa đăng ký thành viên? Đăng ký ngay để nhận hàng trăm ưu đãi từ Vingroup!')) {
 			window.location.replace('signUpView.php');
 		} </script>";
 	}	

@@ -13,7 +13,7 @@
     <?php $userObject = unserialize($_COOKIE["user"]); ?>
     <script>
     function profileOfUser() {
-        alert("- Họ và tên: <?php echo $userObject->name ?> \n- ID: <?php echo $userObject->id ?> \n- Username: <?php echo $userObject->username ?> \n- Số điện thoại: <?php echo $userObject->phone_number ?> \n- Email: <?php echo $userObject->email ?> \n- Địa chỉ: <?php echo $userObject->address ?> \n- Quyền truy cập: Member");
+        window.alert("- Họ và tên: <?php echo $userObject->name ?> \n- ID: <?php echo $userObject->id ?> \n- Username: <?php echo $userObject->username ?> \n- Số điện thoại: <?php echo $userObject->phone_number ?> \n- Email: <?php echo $userObject->email ?> \n- Địa chỉ: <?php echo $userObject->address ?> \n- Quyền truy cập: Member");
     }
     </script>
     <!-- Navigation bar -->

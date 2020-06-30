@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Import model để xử lý  
     if ($validUsername and $validPassword and $validRetypePassword and $validName and $validPhoneNumber and $validEmail and $validAddress) {
-        include '../../model/generalAndMember/signUpModel.php';
+        include '../../model/admin/createAccountForStaffModel.php';
         if ($duplicateUsername == true) {
             $returnMess = "Tên đăng nhập '".$username."' đã được sử dụng, hãy sử dụng tên khác";                       
         }
@@ -101,8 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$returnMess = "Đăng ký thành công";
             echo 
             "<script>
-                window.alert('Đăng ký thành công');
-                window.location.replace('signInView.php');
+                window.alert('Tạo tài khoản cho nhân viên thành công');
             </script>";
         }                
     }
