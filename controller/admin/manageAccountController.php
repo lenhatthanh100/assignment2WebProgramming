@@ -16,25 +16,30 @@
 	echo 
 	"<table class='table table-hover'>
 	    <thead>
-	      	<tr>
+			  <tr>
+			  	<th>STT</th>
 	        	<th>Id</th>
 	        	<th>Username</th>
 	        	<th>Họ và tên</th>
 	        	<th>Số điện thoại</th>
 	        	<th>Email</th>
-	        	<th>Địa chỉ</th>
+				<th>Địa chỉ</th>
+				<th>Setting</th>
 	      	</tr>
 	    </thead>
-	    <tbody>";
+		<tbody>";
+	$count_stt = 1;
 	foreach ($userObjectArr as $account) {
   		echo 
-	  		"<tr>
+			  "<tr>
+			  	<td>",$count_stt++,"</td>
 	        	<td>",$account->id,"</td>
 	        	<td>",$account->username,"</td>
 	        	<td>",$account->name,"</td>
 	        	<td>",$account->phone_number,"</td>
 	        	<td>",$account->email,"</td>
-	        	<td>",$account->address,"</td>
+				<td>",$account->address,"</td>
+				<td><a href='../../view/admin/DeleteAccountView.php?id=$account->id'><button>Delete</button></a></td>
 	      </tr>";
 	}
 	echo 
