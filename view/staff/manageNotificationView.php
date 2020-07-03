@@ -29,17 +29,34 @@
 		header("location:../404.php");
 	}	
 	?>
+	<!-- Dùng AJAX thay đổi danh sách thông báo -->
+	<script>	
+	function showNotificationList(str) {
+	  	var xhttp;	  	 
+	  	xhttp = new XMLHttpRequest();
+	  	xhttp.onreadystatechange = function() {
+	    	if (this.readyState == 4 && this.status == 200) {
+	      		document.getElementById("notificationList").innerHTML = this.responseText;
+	    	}
+	  	};
+	  	xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str, true);
+	  	xhttp.send();	  		  	
+	}
+	</script>
 	<!-- Nội dung quản lý thông báo -->
-	<div class="container marginTop pt-5">
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                <span>Tùy chọn tác vụ</span>
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Trả lời tin nhắn từ khách hàng và thành viên</a>
-                <a class="dropdown-item" href="#">Gửi thông báo cho toàn bộ thành viên</a>
-            </div>
-        </div>
+	<div class="container-fluid marginTop pt-5">
+		<div class="form-group">
+			<label class="text-primary font-weight-bold" for="manageNotificationSelect">Chọn tác vụ:</label>
+			<select class="form-control" id="manageNotificationSelect" name="manageNotificationSelect" onchange="showNotificationList(this.value)">				
+		    	<option value="notAnsweredOfMember" selected="selected">Tin nhắn của thành viên đang chờ trả lời</option>
+		    	<option value="answeredOfMember">Tin nhắn của thành viên đã được trả lời</option>
+		    	<option value="notAnsweredOfGeneral">Tin nhắn của khách lạ</option>		    	
+				<option value="messageFromSystem">Tin nhắn từ hệ thống</option>
+				<option value="newMessageFromSystem">Thêm tin nhắn từ hệ thống</option>
+		  	</select>
+		</div>
+		<script type="text/javascript"> showNotificationList("notAnsweredOfMember"); </script>
+    	<div id="notificationList"></div>
     </div>
 	<!-- Import thêm footer -->
     <?php

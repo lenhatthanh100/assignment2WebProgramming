@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <script src="checkDataForContact.js"></script>
+    <script src="validateDataForContact.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<!-- Import thêm navbar -->
-    <?php
+	<?php
 	if(isset($_COOKIE["user"])) {
 		$userObject = unserialize($_COOKIE["user"]);
 		// Trường hợp tài khoản member
@@ -59,53 +59,128 @@
 		</div>
 	</div>
 	<!-- Tin nhắn -->
-	<div class="container mt-5">
-		<h3><span class="badge badge-pill badge-success text-center">Gửi tin nhắn tới chúng tôi</span></h3>
-		<br>
-		<p class="mt-3 text-secondary font-italic">Vui lòng điền đầy đủ thông tin theo yêu cầu để chúng tôi có thể hỗ trợ quý khách tốt nhất</p>
-		<form class="mt-3">
-			<div class="form-group">
-			  <label for="HoTenForm"><span class="font-weight-bold">Họ và tên</span><span class="text-danger">*</span></label>
-			  <input type="text" class="form-control" id="HoTenForm" placeholder="Nguyễn Văn A">
-			</div>
-			<div class="form-group">
-			  <label for="SdtForm"><span class="font-weight-bold">SĐT</span><span class="text-danger">*</span></label>
-			  <input type="number" class="form-control" id="SdtForm" placeholder="0123456789">
-			</div>
-			<div class="form-group">
-			  <label for="EmailForm"><span class="font-weight-bold">Email</span><span class="text-danger">*</span></label>
-			  <input type="text" class="form-control" id="EmailForm" placeholder="examples@gmail.com">
-			</div>
-			<p><span class="font-weight-bold">Thương hiệu quan tâm</span><span class="text-danger">*</span></p>
-			<div class="form-check-inline">
-			  <label class="form-check-label">
-			    <input type="radio" class="form-check-input" id="Vsmart" name="thuongHieu" value="Vsmart">Vsmart
-			  </label>
-			</div>
-			<div class="form-check-inline">
-			  <label class="form-check-label">
-			    <input type="radio" class="form-check-input" id="Vinfast" name="thuongHieu" value="Vinfast">Vinfast
-			  </label>
-			</div>
-			<div class="form-check-inline">
-			  <label class="form-check-label">
-			    <input type="radio" class="form-check-input" id="Vinhome" name="thuongHieu" value="Vinhome">Vinhome
-			  </label>
-			</div>			
-			<br><br>
-			<div class="form-group">
-			  <label for="SanPhamForm"><span class="font-weight-bold">Sản phẩm quan tâm</span><span class="text-danger">*</span></label>
-			  <input type="text" class="form-control" id="SanPhamForm" placeholder="Vinfast Lux SA2.0">
-			</div>
-			<div class="form-group">
-			  <label for="AboutForm"><span class="font-weight-bold">Nội dung tin nhắn</span></label>
-			  <textarea class="form-control" rows="5" id="AboutForm" placeholder="Tôi cần..."></textarea>
-			</div>
-			<br>
-			<input type="button" class="btn btn-success" value="Submit" onclick="validateData()">
-			<input type="reset" class="btn btn-info" value="Reset">
-		</form>
-	</div>
+	<?php
+	if(!isset($_COOKIE["user"])) {
+		echo '
+		<script>var idQuestioner=-1</script>
+		<div class="container mt-5">
+			<h3><span class="badge badge-pill badge-success text-center">Gửi tin nhắn tới chúng tôi</span></h3>
+			<p class="text-info font-italic mt-3">Vui lòng điền đầy đủ thông tin theo yêu cầu để chúng tôi có thể hỗ trợ quý khách tốt nhất</p>
+			<form class="mt-3">
+				<div class="form-group">
+					<label for="HoTenForm"><span class="font-weight-bold">Họ và tên</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="HoTenForm" placeholder="Nguyễn Văn A">
+				</div>
+				<div class="form-group">
+					<label for="SdtForm"><span class="font-weight-bold">Số điện thoại</span><span class="text-danger">*</span></label>
+					<input type="number" class="form-control ml-5" id="SdtForm" placeholder="0123456789">
+				</div>
+				<div class="form-group">
+					<label for="EmailForm"><span class="font-weight-bold">Email</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="EmailForm" placeholder="examples@gmail.com">
+				</div>
+				<div class="form-group">
+					<label for="AddressForm"><span class="font-weight-bold">Địa chỉ</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="DiaChiForm" placeholder="Số nhà, tên đường, xã/phường, quận/huyện, tỉnh/thành phố">
+				</div>
+				<p><span class="font-weight-bold">Thương hiệu quan tâm</span><span class="text-danger">*</span></p>
+				<div class="form-group ml-5">
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vsmart" name="ThuongHieuForm" value="Vsmart">Vsmart
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vinfast" name="ThuongHieuForm" value="Vinfast">Vinfast
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vinhomes" name="ThuongHieuForm" value="Vinhomes">Vinhomes
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="SanPhamForm"><span class="font-weight-bold">Sản phẩm quan tâm</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="SanPhamForm" placeholder="Vinfast Lux SA2.0">
+				</div>
+				<div class="form-group">
+					<label for="TieuDeForm"><span class="font-weight-bold">Tiêu đề</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="TieuDeForm" placeholder="Đăng ký mua xe Vinfast Lux SA2.0">
+				</div>
+				<div class="form-group">
+					<label for="NoiDungForm"><span class="font-weight-bold">Nội dung tin nhắn</span></label>
+					<textarea class="form-control ml-5" rows="5" id="NoiDungForm" placeholder="Tôi cần..."></textarea>
+				</div>	
+				<br>
+				<input type="button" class="btn btn-success mr-5" value="Submit" onclick="validateDataGeneral()">
+				<input type="reset" class="btn btn-info" value="Reset">
+			</form>
+		</div>
+		';
+	}
+	else {
+		echo '
+		<script>var idQuestioner=',$userObject->id,'</script>
+		<div class="container mt-5">
+			<h3><span class="badge badge-pill badge-success text-center">Gửi tin nhắn tới chúng tôi</span></h3>
+			<p class="text-info font-italic mt-3">Vui lòng điền đầy đủ thông tin theo yêu cầu để chúng tôi có thể hỗ trợ quý khách tốt nhất</p>
+			<form class="mt-3">
+				<div class="form-group">
+					<span class="font-weight-bold">Họ và tên: </span>
+					<span id="HoTenForm">',$userObject->name,'</span>
+				</div>
+				<div class="form-group">
+					<span class="font-weight-bold">Số điện thoại: </span>
+					<span id="SdtForm">',$userObject->phone_number,'</span>
+				</div>
+				<div class="form-group">
+					<span class="font-weight-bold">Email: </span>
+					<span id="EmailForm">',$userObject->email,'</span>
+				</div>
+				<div class="form-group">
+					<span class="font-weight-bold">Địa chỉ: </span>
+					<span id="DiaChiForm">',$userObject->address,'</span>
+				</div>
+				<p><span class="font-weight-bold">Thương hiệu quan tâm</span><span class="text-danger">*</span></p>
+				<div class="form-group ml-5">
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vsmart" name="ThuongHieuForm" value="Vsmart">Vsmart
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vinfast" name="ThuongHieuForm" value="Vinfast">Vinfast
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" id="Vinhomes" name="ThuongHieuForm" value="Vinhomes">Vinhomes
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="SanPhamForm"><span class="font-weight-bold">Sản phẩm quan tâm</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="SanPhamForm" placeholder="Vinfast Lux SA2.0">
+				</div>
+				<div class="form-group">
+					<label for="TieuDeForm"><span class="font-weight-bold">Tiêu đề</span><span class="text-danger">*</span></label>
+					<input type="text" class="form-control ml-5" id="TieuDeForm" placeholder="Đăng ký mua xe Vinfast Lux SA2.0">
+				</div>
+				<div class="form-group">
+					<label for="NoiDungForm"><span class="font-weight-bold">Nội dung tin nhắn</span></label>
+					<textarea class="form-control ml-5" rows="5" id="NoiDungForm" placeholder="Tôi cần..."></textarea>
+				</div>
+				<br>
+				<input type="button" class="btn btn-success mr-5" value="Submit" onclick="validateDataMember()">
+				<input type="reset" class="btn btn-info" value="Reset">
+			</form>
+		</div>
+		';
+	}
+	?>
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {
