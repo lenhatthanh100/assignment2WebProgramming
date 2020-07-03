@@ -45,16 +45,19 @@
 		header("location:../404.php");
 	}	
 	?>	
-	<!-- Nội dung quản lý tài khoản -->
+	<!-- Nội dung xoá tài khoản -->
     <div class="container-fluid marginTop pt-5">
     
         <?php
             $a = $_GET['id'];
             echo "<p>Do you want delete Id = " , $a , "  ?? </p>";
             echo "<form method='post' accept-charset='utf-8' id='usrform'>";
-            echo "<p><input type='hidden' name='id' placeholder='Id' value=$a></p>";
-            echo "<input type='submit' id='delete' value='Yes' />";
-			echo "<a href='manageAccountView.php'><button>No</button></a>";
+			echo "<p><input type='hidden' name='id' placeholder='Id' value=$a></p>";
+			echo "<input type='submit' id='delete' value='Xoá tài khoản'/>";
+			echo "</br>";
+			echo "</br>";
+			// Click button No để quay về trang quản lý
+			echo "<a href='manageAccountView.php'>Quay về trang quản lý</a>";
             echo "</form>"   
         ?>
     <div id="message"></div>
