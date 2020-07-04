@@ -25,14 +25,14 @@
         // Phân loại việc trả kết quả về cho View
         if ($kindNotification == 1) {
             $stt = 1;
-            echo "<p class='text-success'>Số câu hỏi chưa được trả lời: ",count($questionObjectArr),"</p>";
+            echo "<p class='text-success'>Số tin nhắn của thành viên đang chờ trả lời: ",count($questionObjectArr),"</p>";
             echo
             "<table class='table table-hover'>
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>ID Câu hỏi</th>
-                        <th>Câu hỏi</th>
+                        <th>Tiêu đề câu hỏi</th>
                         <th>Hỏi bởi</th>
                         <th>Thời gian hỏi</th>
                         <th>Tác vụ</th>
@@ -57,13 +57,14 @@
         }
         elseif ($kindNotification == 2) {
             $stt = 1;
+            echo "<p class='text-success'>Số tin nhắn của thành viên đã được trả lời: ",count($questionObjectArr),"</p>";
             echo
             "<table class='table table-hover'>
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>ID Câu hỏi</th>
-                        <th>Câu hỏi</th>
+                        <th>Tiêu đề câu hỏi</th>
                         <th>Hỏi bởi</th>
                         <th>Thời gian hỏi</th>
                         <th>Trả lời bởi</th>
@@ -92,13 +93,14 @@
         }
         elseif ($kindNotification == 3) {
             $stt = 1;
+            echo "<p class='text-success'>Số tin nhắn của khách lạ: ",count($questionObjectArr),"</p>";
             echo
             "<table class='table table-hover'>
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>ID Câu hỏi</th>
-                        <th>Câu hỏi</th>
+                        <th>Tiêu đề câu hỏi</th>
                         <th>Thời gian hỏi</th>
                         <th>Tác vụ</th>
                     </tr>

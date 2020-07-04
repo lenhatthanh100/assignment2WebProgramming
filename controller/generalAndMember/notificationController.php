@@ -22,13 +22,14 @@
     // Phân loại việc trả kết quả về cho View
     if ($kindNotification == 1) {
 		$stt = 1;
+		echo "<p class='text-success'>Số tin nhắn đang chờ trả lời: ",count($questionObjectArr),"</p>";
         echo
 		"<table class='table table-hover'>
 			<thead>
 				<tr>
 					<th>STT</th>
 					<th>ID Câu hỏi</th>
-					<th>Câu hỏi</th>
+					<th>Tiêu đề câu hỏi</th>
 					<th>Thời gian hỏi</th>
 					<th>Tác vụ</th>
 				</tr>
@@ -50,14 +51,15 @@
 		</table>";
 	}
     elseif ($kindNotification == 2) {
-        $stt = 1;
+		$stt = 1;
+		echo "<p class='text-success'>Số tin nhắn của đã được trả lời: ",count($questionObjectArr),"</p>";
         echo
 		"<table class='table table-hover'>
 			<thead>
 				<tr>
 					<th>STT</th>
 					<th>ID Câu hỏi</th>
-					<th>Câu hỏi</th>
+					<th>Tiêu đề câu hỏi</th>
 					<th>Thời gian hỏi</th>
 					<th>Trả lời bởi</th>
 					<th>Thời gian trả lời</th>
