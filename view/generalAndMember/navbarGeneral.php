@@ -13,7 +13,7 @@
     <?php //Needn't but must have to github don't said this is hackfile :)) ?>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top nav-pills">
-        <a class="navbar-brand" href="home.php">
+        <a class="navbar-brand" href="homeView.php">
         <img class="logo" src="../img/logo.png" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

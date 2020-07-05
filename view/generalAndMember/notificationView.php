@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-	<title>Trang chủ</title>
+	<title>Thông báo</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../style.css">
@@ -29,9 +29,32 @@
 		header("location:../404.php");
 	}	
 	?>
+	<!-- Dùng AJAX thay đổi danh sách thông báo -->
+	<script>
+	function showNotificationList(str) {
+	  	var xhttp;	  	 
+	  	xhttp = new XMLHttpRequest();
+	  	xhttp.onreadystatechange = function() {
+	    	if (this.readyState == 4 && this.status == 200) {
+	      		document.getElementById("notificationList").innerHTML = this.responseText;
+	    	}
+	  	};
+	  	xhttp.open("GET", "../../controller/generalAndMember/notificationController.php?kindNotification="+str, true);
+	  	xhttp.send();	  		  	
+	}
+	</script>
 	<!-- Nội dung thông báo -->
-	<div class="container marginTop pt-5">
-        <h1 class="text-danger"> Chức năng chưa hiện thực </h1>
+	<div class="container-fluid marginTop pt-5">
+		<div class="form-group">
+			<label class="text-primary font-weight-bold" for="notificationSelect">Chọn tác vụ:</label>
+			<select class="form-control" id="notificationSelect" name="notificationSelect" onchange="showNotificationList(this.value)">				
+		    	<option value="notAnswered" selected="selected">Tin nhắn đang chờ trả lời</option>
+		    	<option value="answered">Tin nhắn đã được trả lời</option>
+		    	<option value="messageFromSystem" >Tin nhắn từ hệ thống</option>
+		  	</select>
+		</div>
+		<script type="text/javascript"> showNotificationList("notAnswered"); </script>
+    	<div id="notificationList"></div>
     </div>
 	<!-- Import thêm footer -->
     <?php

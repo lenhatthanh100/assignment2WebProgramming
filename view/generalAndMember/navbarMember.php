@@ -13,12 +13,14 @@
     <?php $userObject = unserialize($_COOKIE["user"]); ?>
     <script>
     function profileOfUser() {
-        window.alert("- Họ và tên: <?php echo $userObject->name ?> \n- ID: <?php echo $userObject->id ?> \n- Username: <?php echo $userObject->username ?> \n- Số điện thoại: <?php echo $userObject->phone_number ?> \n- Email: <?php echo $userObject->email ?> \n- Địa chỉ: <?php echo $userObject->address ?> \n- Quyền truy cập: Member");
+        if(window.confirm("- Họ và tên: <?php echo $userObject->name ?> \n- ID: <?php echo $userObject->id ?> \n- Username: <?php echo $userObject->username ?> \n- Số điện thoại: <?php echo $userObject->phone_number ?> \n- Email: <?php echo $userObject->email ?> \n- Địa chỉ: <?php echo $userObject->address ?> \n- Quyền truy cập: Member \nBạn có muốn thay đổi thông tin cá nhân/ mật khẩu?")) {
+            window.location.replace('../profileOfUserView.php');
+        }
     }
     </script>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top nav-pills">
-        <a class="navbar-brand" href="home.php">
+        <a class="navbar-brand" href="homeView.php">
         <img class="logo" src="../img/logo.png" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

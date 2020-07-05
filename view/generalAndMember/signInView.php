@@ -42,16 +42,16 @@
 			    		<input type="password" class="form-control" name="passwordForm" id="passwordForm" placeholder="Nhập mật khẩu" value="<?php echo $password; ?>">
 			    		<p class="text-danger"><?php echo $errPassword; ?></p>
 			    	</div>			    
-				</div>
-				<!-- Tạm thời bỏ chức năng ghi nhớ, vì chưa hash username và password -->
-				<!-- <div class="form-group">
+				</div>				
+				<div class="form-group">
 			    	<div class="col-sm-offset-2 col-sm-10">
-			      		<div class="checkbox">
+						<!-- Tạm thời bỏ chức năng ghi nhớ, vì chưa hash username và password -->
+			      		<!-- <div class="checkbox">
 			        		<label><input type="checkbox"> Tự động điền tên đăng nhập, mật khẩu cho lần đăng nhập sau</label>
-			      		</div>
+			      		</div> -->
 			      		<p class="text-danger"><?php echo $returnMess; ?></p>
 			    	</div>
-				</div> -->			  
+				</div>			  
 				<div class="form-group">
 			    	<button type="submit" class="btn btn-success ml-3">Đăng nhập</button>			      
 				</div>
