@@ -7,8 +7,7 @@
 
         $stmt = $conn->prepare("DELETE FROM account WHERE id=:id");// Chú ý phải sử dụng prepare statement để chống mã độc :))
         $stmt->bindParam(':id', $a);
-
-        // use exec() because no results are returned
+        
         $stmt->execute();
 
         //Quay lại trang ManageAccount khi thực hiện xoá xong
