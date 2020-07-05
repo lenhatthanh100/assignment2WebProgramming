@@ -47,7 +47,7 @@
                         <td>",$question->title,"</td>
                         <td>",$question->name_questioner,"</td>                        
                         <td>",$question->time_question,"</td>
-                        <td><button type='button' class='btn btn-primary btn-sm'>Trả lời</button></td> 
+                        <td><a href='../../view/detailsContact.php?id=$question->id_question&kind=$kindNotification' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
                     </tr>";
                 $stt++;
             }
@@ -83,7 +83,7 @@
                         <td>",$question->time_question,"</td>
                         <td>",$question->name,"</td>
                         <td>",$question->time_answer,"</td>
-                        <td><button type='button' class='btn btn-primary btn-sm'>Xem chi tiết</button></td> 
+                        <td><a href='../../view/detailsContact.php?id=$question->id_question&kind=$kindNotification' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
                     </tr>";
                 $stt++;
             }
@@ -113,7 +113,7 @@
                         <td>",$question->id_question,"</td>
                         <td>",$question->title,"</td>
                         <td>",$question->time_question,"</td>
-                        <td><button type='button' class='btn btn-primary btn-sm'>Xem chi tiết</button></td> 
+                        <td><a href='../../view/detailsContact.php?id=$question->id_question&kind=$kindNotification' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
                     </tr>";
                 $stt++;
             }
