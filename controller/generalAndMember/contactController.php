@@ -8,6 +8,6 @@ $brand = $_POST['brand'];
 $product = $_POST['product'];
 $title = $_POST['title'];
 $question = $_POST['question'];
-$timeQuestion = $_POST['timeQuestion'];
+// $timeQuestion = $_POST['timeQuestion'];
 include '../../model/generalAndMember/contactModel.php';
 ?>

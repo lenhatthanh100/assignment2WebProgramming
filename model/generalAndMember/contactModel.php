@@ -1,5 +1,6 @@
 <?php
     include '../../model/accessDatabase.php';
+    $dateNow = (new \DateTime())->format('H:i:s, d/m/Y');
     try {     
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,7 +16,7 @@
             $stmt->bindParam(':brand', $brand);
             $stmt->bindParam(':product', $product);
             $stmt->bindParam(':title', $title);
-            $stmt->bindParam(':timeQuestion', $timeQuestion);
+            $stmt->bindParam(':timeQuestion', $dateNow);
         }
         else {
             $stmt = $conn->prepare("INSERT INTO contact (id_question, id_questioner, name_questioner, phone_number, email, address, brand, product, title, question, time_question)
@@ -30,7 +31,7 @@
             $stmt->bindParam(':product', $product);
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':question', $question);
-            $stmt->bindParam(':timeQuestion', $timeQuestion);
+            $stmt->bindParam(':timeQuestion', $dateNow);
         }        
         $stmt->execute();
     }

@@ -4,7 +4,7 @@
     $idStaff = $userObject->id;
     $idquestion = $_POST['id'];
     $content = $_POST['content'];
-    $dateNow = (new \DateTime())->format('H:i:s, d/m/Y');
+    $dateNow = (new \DateTime())->format('H:i:s, d/m/');
     try{     
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
