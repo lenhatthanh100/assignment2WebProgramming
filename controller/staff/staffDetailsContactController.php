@@ -21,7 +21,7 @@
 	
 
 	include '../model/staff/staffDetailsContactModel.php';
-
+	
 	//Convert kết quả từ Json về PHP Object để dễ xử lý
 	$detailsContact = json_decode($resultJson);
 	if($kind == 2){
