@@ -80,7 +80,7 @@ else if ($kindAction == 2) {
             <div class="form-group">
                 <label class="control-label font-weight-bold" for="longContentForm">Nội dung đầy đủ</label>
                 <div class="ml-3">
-                    <textarea type="text" class="form-control" rows="10" name="longContentForm" id="longContentForm" placeholder="Nhập nội dung đầy đủ"></textarea>
+                    <textarea type="text" class="form-control" rows="20" name="longContentForm" id="longContentForm" placeholder="Nhập nội dung đầy đủ"></textarea>
                 </div>			    
             </div>
             <div class="form-group">

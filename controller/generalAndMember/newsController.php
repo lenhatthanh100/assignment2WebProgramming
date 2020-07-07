@@ -25,8 +25,8 @@ if ($kindAction == 1) {
             </div>
             <br>
             <h4 class="new font-weight-bold">',$newsObjectArr[0]->title,'</h4>
-            <p>',$newsObjectArr[0]->short_content,'</p>
             <p class="text-secondary font-italic">',$newsObjectArr[0]->time_create,'</p>
+            <p>',$newsObjectArr[0]->short_content,'</p>            
         </div>
         <div class="col-md-5 px-0">
             <img src="',$newsObjectArr[0]->link_image,'" class="img-thumbnail" alt="tinTucMoiNhat">
@@ -47,12 +47,12 @@ if ($kindAction == 1) {
                 break;
             }
             echo '
-            <div class="col-md-4 px-5" onclick=news("showDetailedNews&idNews=',$newsObjectArr[$countNews]->id_news,'")>
+            <div class="col-md-4 px-4" onclick=news("showDetailedNews&idNews=',$newsObjectArr[$countNews]->id_news,'")>
                 <div class="row zoom">				  
                     <img src="',$newsObjectArr[$countNews]->link_image,'" class="scaleNew rounded" alt="tinTuc">
                     <h5 class="new font-weight-bold mt-3">',$newsObjectArr[$countNews]->title,'</h5>
-                    <p>',$newsObjectArr[$countNews]->short_content,'</p>
                     <p class="text-secondary font-italic">',$newsObjectArr[$countNews]->time_create,'</p>
+                    <p>',$newsObjectArr[$countNews]->short_content,'</p>                    
                 </div>
             </div>
             ';
@@ -70,7 +70,7 @@ else {
     $idNews = $_GET['idNews'];
     include '../../model/generalAndMember/newsModel.php';
     $newsObject = json_decode($resultJson);
-    echo '            
+    echo '      
     <h2 class="new font-weight-bold pt-5">',$newsObject->title,'</h2>            
     <p class="text-secondary font-italic">',$newsObject->time_create,'</p>
     <div>

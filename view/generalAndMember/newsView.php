@@ -35,8 +35,11 @@
 	  	var xhttp; 	 
         xhttp = new XMLHttpRequest();
         // Phân luồng xử lý
-		xhttp.onreadystatechange = function() {
+		xhttp.onreadystatechange = function() {			
 			if (this.readyState == 4 && this.status == 200) {
+				if (str.indexOf("showDetailedNews") != -1) {
+					window.scrollTo(0, 0);
+				}
 				document.getElementById("news").innerHTML = this.responseText;
 			}
 		};
