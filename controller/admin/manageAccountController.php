@@ -39,7 +39,7 @@
 	        	<td>",$account->phone_number,"</td>
 	        	<td>",$account->email,"</td>
 				<td>",$account->address,"</td>
-				<td><a href='../../view/admin/deleteAccountView.php?id=$account->id'><button>Delete</button></a></td>
+				<td><a class='btn btn-danger' href='../../view/admin/deleteAccountView.php?id=$account->id'>Delete</a></td>
 	      </tr>";
 	}
 	echo 

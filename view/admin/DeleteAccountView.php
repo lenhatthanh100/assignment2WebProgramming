@@ -47,19 +47,20 @@
 	?>	
 	<!-- Nội dung xoá tài khoản -->
     <div class="container-fluid marginTop pt-5">
-    
+    	<div class="container text-center">
         <?php
             $a = $_GET['id'];
-            echo "<p>Do you want delete Id = " , $a , "  ?? </p>";
+            echo "<h3 style='color:red;'>Bạn có chắc chắn muốn xoá tài khoản mang ID = " , $a , "  ? </h3>";
             echo "<form method='post' accept-charset='utf-8' id='usrform'>";
 			echo "<p><input type='hidden' name='id' placeholder='Id' value=$a></p>";
-			echo "<input type='submit' id='delete' value='Xoá tài khoản'/>";
+			echo "<input class='btn btn-danger' type='submit' id='delete' value='Xoá tài khoản'/>";
 			echo "</br>";
 			echo "</br>";
 			// Click button No để quay về trang quản lý
-			echo "<a href='manageAccountView.php'>Quay về trang quản lý</a>";
+			echo "<a class='btn btn-light' href='manageAccountView.php'>Quay về trang quản lý</a>";
             echo "</form>"   
         ?>
+		</div>
     <div id="message"></div>
     </div>  
    

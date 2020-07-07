@@ -85,6 +85,38 @@
 		</table>";
     }
     else {
-        echo 'Sẽ xử lý sau, cái này có database khác, dự là có hình ảnh các thứ, nói chung là xịn xò :))';
+        $resultJson = null;
+            include '../../model/staff/showMessSysModel.php';    
+            $messObjectArr = json_decode($resultJson);
+            $stt = 1;
+            echo "<p class='text-success'>Số tin nhắn hiện tại: ",count($messObjectArr),"</p>";
+            echo
+            "<table class='table table-hover'>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>ID tin nhắn</th>
+                        <th>Tiêu đề</th>
+                        <th>Người tạo</th>
+                        <th>Thời gian</th>
+                        <th>Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>";
+            foreach ($messObjectArr as $mess) {
+                echo 
+                    "<tr>
+                        <td>",$stt,"</td>
+                        <td>",$mess->id_message_system,"</td>
+                        <td>",$mess->title,"</td>  
+                        <td>",$mess->name,"</td>                      
+                        <td>",$mess->time_create,"</td>
+                        <td><a href='detailMessSysView.php?id=$mess->id_message_system' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
+                    </tr>";
+                $stt++;
+            }
+            echo 
+                 "</tbody>
+            </table>";
     }	
 ?>

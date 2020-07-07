@@ -18,6 +18,7 @@
 		// Trường hợp tài khoản staff
 		if ($userObject->kind_account == 2) {
 			include 'navbarStaff.php';
+			echo '<script>var idCreater=',$userObject->id,'</script>';
 		}
 		// Trường hợp tài khoản member, admin dùng URL để truy cập
 		else {
@@ -32,15 +33,48 @@
 	<!-- Dùng AJAX thay đổi danh sách thông báo -->
 	<script>	
 	function showNotificationList(str) {
-	  	var xhttp;	  	 
-	  	xhttp = new XMLHttpRequest();
-	  	xhttp.onreadystatechange = function() {
-	    	if (this.readyState == 4 && this.status == 200) {
-	      		document.getElementById("notificationList").innerHTML = this.responseText;
-	    	}
-	  	};
-	  	xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str, true);
-	  	xhttp.send();	  		  	
+		if(str == "addNewMessage")
+		{
+			if (!document.getElementById("titleForm").value || !document.getElementById("linkImageForm").value || !document.getElementById("longContentForm").value) {
+				alert("Không được bỏ trống bất kỳ trường dữ liệu nào");
+				return false;
+			}
+			// Kiểm tra dữ liệu người dùng nhập vào
+			else if (document.getElementById("titleForm").value.length > 300) {
+				alert("Tiêu đề bài viết chứa tối đa 300 ký tự");
+				return false;
+			}
+			else if (document.getElementById("longContentForm").value.length > 1500) {
+				alert("Tiêu đề bài viết chứa tối đa 1500 ký tự");
+				return false;
+			}
+			else {
+				var title = document.getElementById("titleForm").value;
+				var linkImage = document.getElementById("linkImageForm").value;
+				var longContent = document.getElementById("longContentForm").value;
+				var xhttp;	  	 
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						window.alert('Tạo bài viết thành công');
+						document.getElementById("notificationList").innerHTML = this.responseText;
+					}
+				};
+				xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str+"&idCreater="+idCreater+"&title="+title+"&linkImage="+linkImage+"&longContent="+longContent+"&timeCreate="+(new Date()).toLocaleString(), true);
+				xhttp.send();
+			}
+		}
+		else{
+			var xhttp;	  	 
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("notificationList").innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str, true);
+			xhttp.send();
+		}	  		  	
 	}
 	</script>
 	<!-- Nội dung quản lý thông báo -->
