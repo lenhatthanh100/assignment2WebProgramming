@@ -151,7 +151,7 @@
                         <td>",$mess->title,"</td>  
                         <td>",$mess->name,"</td>                      
                         <td>",$mess->time_create,"</td>
-                        <td><a href='../../view/detailsContact.php?id=$mess->id_message_system' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
+                        <td><a href='detailMessSysView.php?id=$mess->id_message_system' class='btn btn-primary btn-sm'>Xem chi tiết</a></td> 
                     </tr>";
                 $stt++;
             }
