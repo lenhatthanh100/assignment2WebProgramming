@@ -44,6 +44,10 @@
 				alert("Tiêu đề bài viết chứa tối đa 300 ký tự");
 				return false;
 			}
+			else if (document.getElementById("longContentForm").value.length > 1500) {
+				alert("Tiêu đề bài viết chứa tối đa 1500 ký tự");
+				return false;
+			}
 			else {
 				var title = document.getElementById("titleForm").value;
 				var linkImage = document.getElementById("linkImageForm").value;
