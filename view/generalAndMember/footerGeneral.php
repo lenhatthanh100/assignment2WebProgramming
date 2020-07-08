@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-	<title>Trang chủ</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php //Needn't but must have to github don't said this is hackfile :)) ?>
@@ -30,16 +29,16 @@
 					</li>
 					<li>
 						<p>Fax:+84 (24) 3974 8888</p>
-					</li> 
+					</li>
 					<li>
 						<a href="https://www.facebook.com/vingroup.net/" target="_blank"><p class="text-dark">Facebook</p></a>
-					</li>		  		
+					</li>
 				</ul>
 			</div>
 			<div class="col-md-4">
 				<ul>
 					<li>
-						<a href="home.php"><p class="text-dark">Trang chủ</p></a>
+						<a href="homeView.php"><p class="text-dark">Trang chủ</p></a>
 					</li>
 					<li>
 						<a href="introduceView.php"><p class="text-dark">Giới thiệu</p></a>
@@ -55,7 +54,7 @@
 					</li>
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 </body>
 </html>

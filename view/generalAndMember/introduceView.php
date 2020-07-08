@@ -4,16 +4,33 @@
 	<title>Giới thiệu</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
-    <?php include 'navbar.php'; ?>
+    <?php
+	if(isset($_COOKIE["user"])) {
+		$userObject = unserialize($_COOKIE["user"]);
+		// Trường hợp tài khoản member
+		if ($userObject->kind_account == 1) {
+			include 'navbarMember.php';
+		}
+		// Trường hợp tài khoản staff, admin dùng URL để truy cập
+		else {
+			header("location:../404.php");
+		}
+	}
+	// Trường hợp chưa đăng nhập
+	else {
+		include 'navbarGeneral.php';
+	}
+	?>
 	<!-- Nội dung giới thiệu -->
+	<script>document.getElementById("introduceView").setAttribute("class","nav-link titleOfNavbar active")</script>
 	<div>
 		<!-- Text nội dung giới thiệu -->
 		<div class="container marginTop">
@@ -30,7 +47,7 @@
 		<!-- Lĩnh vực hoạt động -->
 		<div class="container">
 			<h1>LĨNH VỰC HOẠT ĐỘNG</h1>
-			
+
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs nav-pills">
 				<li class="nav-item">
@@ -56,7 +73,7 @@
 				  		<div class="row">
 							<div class="col-md-4 px-5">
 								<div class="gallery">
-									<img src="img/logoVintech.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVintech">
+									<img src="../img/logoVintech.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVintech">
 							  		<div class="desc"><p class="font-weight-bold mb-0">VINTECH</p></div>
 							  		<p class="font-italic mx-2">Sứ mệnh của VinTech là đẩy mạnh sự phát triển công nghệ của Việt Nam.</p>
 								</div>
@@ -75,14 +92,14 @@
 				  		<div class="row">
 						  	<div class="col-md-4 px-5">
 						  		<div class="gallery">
-							  		<img src="img/logoVinfast.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinfast">
+							  		<img src="../img/logoVinfast.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinfast">
 							  		<div class="desc"><p class="font-weight-bold mb-0">VINFAST</p></div>
 							  		<p class="font-italic mx-2">Sự ra đời của VINFAST thể hiện khát vọng xây dựng một thương hiệu Việt Nam có tầm thế giới.</p>
 								</div>
 							</div>
 							<div class="col-md-4 px-5">
 						  		<div class="gallery">
-									<img src="img/logoVinsmart.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinsmart">
+									<img src="../img/logoVinsmart.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinsmart">
 									<div class="desc"><p class="font-weight-bold mb-0">VINSMART</p></div>
 									<p class="font-italic mx-2">Công ty Nghiên cứu và Sản xuất VinSmart được thành lập vào tháng 6/2018.</p>
 								</div>
@@ -101,21 +118,21 @@
 			  			<div class="row">
 						  	<div class="col-md-4 px-5">
 						  		<div class="gallery">
-								  	<img src="img/logoVinhome.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinhome">
+								  	<img src="../img/logoVinhome.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinhome">
 								  	<div class="desc"><p class="font-weight-bold mb-0">VINHOMES</p></div>
 								  	<p class="font-italic mx-2">Hệ thống căn hộ, biệt thự và nhà phố thương mại với dịch vụ đẳng cấp.</p>
 								</div>
 							</div>
 							<div class="col-md-4 px-5">
 						  		<div class="gallery">
-									<img src="img/logoVinpearl.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinpearl">
+									<img src="../img/logoVinpearl.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinpearl">
 									<div class="desc"><p class="font-weight-bold mb-0">VINPEARL</p></div>
 									<p class="font-italic mx-2">Tự hào là thương hiệu dẫn đầu ngành khách sạn du lịch nghỉ dưỡng tại Việt Nam.</p>
 								</div>
 							</div>
 							<div class="col-md-4 px-5">
 						  		<div class="gallery">
-								  	<img src="img/logoVinschool.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinschool">
+								  	<img src="../img/logoVinschool.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinschool">
 								  	<div class="desc"><p class="font-weight-bold mb-0">VINSCHOOL</p></div>
 								  	<p class="font-italic mx-2">Vinchsool nổ lực phát triển hệ thống Giáo dục Liên cấp chất lượng cao.</p>
 								</div>
@@ -125,21 +142,21 @@
 						<div class="row">
 					  		<div class="col-md-4 px-5">
 					  			<div class="gallery">
-						  			<img src="img/logoVinuni.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinuni">
+						  			<img src="../img/logoVinuni.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinuni">
 						  			<div class="desc"><p class="font-weight-bold mb-0">VINUNI</p></div>
 						  			<p class="font-italic mx-2">Khát vọng của VinUni là tạo ra đột phá trong chất lượng giáo dục đại học tại Việt Nam, hướng tới đạt đẳng cấp thế giới.</p>
 								</div>
 					  		</div>
 							<div class="col-md-4 px-5">
 					  			<div class="gallery">
-						  			<img src="img/logoVinmec.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinmec">
+						  			<img src="../img/logoVinmec.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinmec">
 						  			<div class="desc"><p class="font-weight-bold mb-0">VINMEC</p></div>
 						  			<p class="font-italic mx-2">Vinmec là hệ thống y tế phi lợi nhuận do Tập đoàn Vingroup đầu tư phát triển từ năm 2012.</p>
 								</div>
 							</div>
 							<div class="col-md-4 px-5">
 					  			<div class="gallery">
-									<img src="img/logoVinid.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinid">
+									<img src="../img/logoVinid.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVinid">
 									<div class="desc"><p class="font-weight-bold mb-0">VINID</p></div>
 									<p class="font-italic mx-2">Công cụ giúp kết nối khách hàng với toàn hệ sinh thái Vingroup.</p>
 								</div>
@@ -149,18 +166,34 @@
 						<div class="row">
 					  		<div class="col-md-4 px-5">
 					  			<div class="gallery">
-									<img src="img/logoVincom.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVincom">
+									<img src="../img/logoVincom.jpg" class="img-thumbnail scaleImageFullWidth" alt="logoVincom">
 									<div class="desc"><p class="font-weight-bold mb-0">VINCOM</p></div>
 									<p class="font-italic mx-2">Vincom là thương hiệu bất động sản bán lẻ hàng đầu Việt Nam.</p>
 								</div>
 					  		</div>
 						</div>
-			  		</div>			  	
+			  		</div>
 				</div>
-			</div>			
-		</div>	
+			</div>
+		</div>
 	</div>
 	<!-- Import thêm footer -->
-    <?php include 'footer.php'; ?>
+    <?php
+	if(isset($_COOKIE["user"])) {
+		$userObject = unserialize($_COOKIE["user"]);
+		// Trường hợp tài khoản member
+		if ($userObject->kind_account == 1) {
+			include 'footerMember.php';
+		}
+		// Trường hợp tài khoản staff, admin dùng URL để truy cập
+		else {
+			header("location:../404.php");
+		}
+	}
+	// Trường hợp chưa đăng nhập
+	else {
+		include 'footerGeneral.php';
+	}
+	?>
 </body>
 </html>
