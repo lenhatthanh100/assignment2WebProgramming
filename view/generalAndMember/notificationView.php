@@ -37,8 +37,14 @@
 	  	xhttp = new XMLHttpRequest();
 	  	xhttp.onreadystatechange = function() {
 	    	if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("notificationList").classList.remove("loader");	// Xóa class để dừng icon loading
 	      		document.getElementById("notificationList").innerHTML = this.responseText;
 	    	}
+			else {
+				// Xóa nội dung và thêm class để tạo icon loading
+				document.getElementById("notificationList").innerHTML = "";
+				document.getElementById("notificationList").classList.add("loader");
+			}
 	  	};
 	  	xhttp.open("GET", "../../controller/generalAndMember/notificationController.php?kindNotification="+str, true);
 	  	xhttp.send();
@@ -53,9 +59,9 @@
 		    	<option value="answered">Tin nhắn đã được trả lời</option>
 		    	<option value="messageFromSystem" >Tin nhắn từ hệ thống</option>
 		  	</select>
-		</div>
-		<script type="text/javascript"> showNotificationList("notAnswered"); </script>
+		</div>		
     	<div id="notificationList"></div>
+		<script type="text/javascript"> showNotificationList("notAnswered"); </script>
     </div>
 	<!-- Import thêm footer -->
     <?php

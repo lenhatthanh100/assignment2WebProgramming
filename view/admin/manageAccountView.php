@@ -36,8 +36,14 @@
 	  	xhttp = new XMLHttpRequest();
 	  	xhttp.onreadystatechange = function() {
 	    	if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("accountList").classList.remove("loader");	// Xóa class để dừng icon loading
 	      		document.getElementById("accountList").innerHTML = this.responseText;
 	    	}
+			else {
+				// Xóa nội dung và thêm class để tạo icon loading
+				document.getElementById("accountList").innerHTML = "";
+				document.getElementById("accountList").classList.add("loader");
+			}
 	  	};
 	  	xhttp.open("GET", "../../controller/admin/manageAccountController.php?kindAccount="+str, true);
 	  	xhttp.send();
@@ -51,9 +57,9 @@
 		    	<option value="member" selected="selected">Tài khoản thành viên</option>
 		    	<option value="staff">Tài khoản nhân viên</option>
 		  	</select>
-		</div>
-		<script type="text/javascript"> showAccountList("member"); </script>
+		</div>		
     	<div id="accountList"></div>
+		<script type="text/javascript"> showAccountList("member"); </script>
     </div>
 	<!-- Import thêm footer -->
     <?php

@@ -40,7 +40,13 @@
 	  		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("manageProductViewContainer").classList.remove("loader");	// Xóa class để dừng icon loading
 					document.getElementById("manageProductViewContainer").innerHTML = this.responseText;
+				}
+				else {
+					// Xóa nội dung và thêm class để tạo icon loading
+					document.getElementById("manageProductViewContainer").innerHTML = "";
+					document.getElementById("manageProductViewContainer").classList.add("loader");
 				}
 			};
 			xhttp.open("POST", "../../controller/staff/manageServiceController.php", true);
@@ -116,9 +122,9 @@
 		    	<option value="showProductList" selected="selected">Danh sách sản phẩm</option>
 		    	<option value="showAddProductForm">Thêm sản phẩm mới</option>
 		  	</select>
-		</div>
-		<script type="text/javascript"> manageProduct("showProductList"); </script>
+		</div>		
     	<div id="manageProductViewContainer"></div>
+		<script type="text/javascript"> manageProduct("showProductList"); </script>
     </div>
 	<!-- Import thêm footer -->
     <?php

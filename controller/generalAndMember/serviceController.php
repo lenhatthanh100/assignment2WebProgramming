@@ -1,5 +1,5 @@
 <?php
-$kindAction = null; //1->showProductList, 2->showDetailedProduct, 3->searchProduct
+$kindAction = null; //1->showProductList, 2->showDetailedProduct, 3->searchProduct, 4->detailedSearchProduct
 $resultJson = null;
 
 // Phân loại tác vụ 
@@ -9,8 +9,11 @@ if ($_GET['kindAction'] == 'showProductList') {
 else if ($_GET['kindAction'] == 'showDetailedProduct') {
     $kindAction = 2;
 }
-else {
+else if ($_GET['kindAction'] == 'searchProduct') {
     $kindAction = 3;
+}
+else {
+    $kindAction = 4;
 }
 
 // Phân luồng xử lý
@@ -154,7 +157,7 @@ else if ($kindAction == 2) {
     <h2 class="new font-weight-bold pt-5">',$productObject->name_product,'</h2>            
     <p class="text-secondary font-italic">',$productObject->time_create,'</p>
     <div>
-        <img src="',$productObject->link_image,'" class="img-thumbnail mx-auto d-block" alt="tinTucMoiNhat">
+        <img src="',$productObject->link_image,'" class="img-thumbnail mx-auto d-block" alt="hinhAnhSanPham">
     </div>
     <p class=mt-3>',nl2br($productObject->long_content),'</p>
     <div class="text-center">
@@ -162,7 +165,7 @@ else if ($kindAction == 2) {
     </div>
     ';
 }
-else {
+else if ($kindAction == 3) {
     $brandProduct = $_GET['brandProduct'];
     include '../../model/generalAndMember/serviceModel.php';
     $productObjectArr = json_decode($resultJson);
@@ -178,5 +181,32 @@ else {
             ';
         }
     }    
+}
+else {
+    $brandProduct = $_GET['brandProduct'];
+    include '../../model/generalAndMember/serviceModel.php';
+    $productObjectArr = json_decode($resultJson);
+    $totalProduct = count($productObjectArr);
+    $amountOfSearchResult = 0;
+    echo '<h5 class="text-success font-weight-bold mt-3">Kết quả tìm kiếm cho "',$_GET['keyWord'],'"</h5>';
+    foreach ($productObjectArr as $product) {
+        if (!(strpos(strtolower($product->name_product),strtolower($_GET['keyWord'])) === false)) {
+            $amountOfSearchResult++;
+            echo '
+            <div class="row mt-3 zoom" onclick=(product("showDetailedProduct&idProduct=',$product->id_product,'"))>
+                <div class="col-md-4">
+                    <img src="',$product->link_image,'" style="height:300px;" class="img-thumbnail" alt="tinTucMoiNhat">
+                </div>
+                <div class="col-md-6">
+                    <h5 class="new font-weight-bold text-center mt-1">',$product->name_product,'</h5>
+                    <p class="mt-1">',$product->short_content,'</p>            
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success" onclick="window.location.href=',"'contactView.php'",'">LIÊN HỆ NGAY</button>
+                    </div>
+                </div>
+            </div>           
+            ';
+        }
+    }
 }
 ?>

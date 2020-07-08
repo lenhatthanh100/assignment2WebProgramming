@@ -18,6 +18,7 @@
             $result = $stmt->fetch(); // Dùng fetchAll() để trả về mảng toàn bộ dữ liệu hoặc fetch() để lấy từng hàng        
             $resultJson = json_encode($result); // Convert kết quả sang dạng json
         }
+        // Tìm kiếm sản phẩm
         else {
             $stmt = $conn->prepare("SELECT * FROM product WHERE brand_product=:brandProduct ORDER BY id_product DESC;");// Chú ý phải sử dụng prepare statement để chống mã độc :))          
             $stmt->bindParam(':brandProduct', $brandProduct);

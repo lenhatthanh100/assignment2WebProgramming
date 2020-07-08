@@ -57,7 +57,7 @@
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						window.alert('Tạo bài viết thành công');
-						document.getElementById("notificationList").innerHTML = this.responseText;
+						showNotificationList("messageFromSystem");
 					}
 				};
 				xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str+"&idCreater="+idCreater+"&title="+title+"&linkImage="+linkImage+"&longContent="+longContent+"&timeCreate="+(new Date()).toLocaleString(), true);
@@ -69,7 +69,13 @@
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("notificationList").classList.remove("loader");	// Xóa class để dừng icon loading
 					document.getElementById("notificationList").innerHTML = this.responseText;
+				}
+				else {
+					// Xóa nội dung và thêm class để tạo icon loading
+					document.getElementById("notificationList").innerHTML = "";
+					document.getElementById("notificationList").classList.add("loader");
 				}
 			};
 			xhttp.open("GET", "../../controller/staff/manageNotificationController.php?kindNotification="+str, true);
@@ -88,10 +94,10 @@
 				<option value="messageFromSystem">Tin nhắn từ hệ thống</option>
 				<option value="newMessageFromSystem">Thêm tin nhắn từ hệ thống</option>
 		  	</select>
-		</div>
-		<script type="text/javascript"> showNotificationList("notAnsweredOfMember"); </script>
-    	<div id="notificationList"></div>
+		</div>		
+    	<div id="notificationList"></div>		
     </div>
+	<script type="text/javascript"> showNotificationList("notAnsweredOfMember"); </script>
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {

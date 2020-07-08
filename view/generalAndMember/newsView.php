@@ -41,18 +41,25 @@
 				if (str.indexOf("showDetailedNews") != -1) {
 					window.scrollTo(0, 0);
 				}
+				document.getElementById("news").classList.remove("loader");	// Xóa class để dừng icon loading
 				document.getElementById("news").innerHTML = this.responseText;
+			}
+			else {
+				// Xóa nội dung và thêm class để tạo icon loading
+				document.getElementById("news").innerHTML = "";
+				document.getElementById("news").classList.add("loader");
 			}
 		};
 		xhttp.open("GET", "../../controller/generalAndMember/newsController.php?kindAction="+str, true);
 		xhttp.send();
-	}
-	news("showNewsList");
+	}	
 	</script>
 	<!-- Nội dung tin tức -->
-	<div class="container marginTop" id="news">
-
+	<div class="container">
+		<div  class="marginTop" id="news">
+		</div>
 	</div>
+	<script>news("showNewsList");</script>
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {

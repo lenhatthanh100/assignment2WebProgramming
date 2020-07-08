@@ -40,7 +40,13 @@
 	  		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("manageNewsViewContainer").classList.remove("loader");	// Xóa class để dừng icon loading
 					document.getElementById("manageNewsViewContainer").innerHTML = this.responseText;
+				}
+				else {
+				// Xóa nội dung và thêm class để tạo icon loading
+					document.getElementById("manageNewsViewContainer").innerHTML = "";
+					document.getElementById("manageNewsViewContainer").classList.add("loader");
 				}
 			};
 			xhttp.open("POST", "../../controller/staff/manageNewsController.php", true);
@@ -108,10 +114,10 @@
 		    	<option value="showNewsList" selected="selected">Danh sách bài viết</option>
 		    	<option value="showAddNewsForm">Tạo bài viết mới</option>
 		  	</select>
-		</div>
-		<script type="text/javascript"> manageNews("showNewsList"); </script>
+		</div>		
     	<div id="manageNewsViewContainer"></div>
     </div>
+	<script type="text/javascript"> manageNews("showNewsList"); </script>
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {
