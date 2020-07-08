@@ -1,13 +1,16 @@
 <?php
-$kindAction = null; //1->showProductList, 2->showDetailedProduct
+$kindAction = null; //1->showProductList, 2->showDetailedProduct, 3->searchProduct
 $resultJson = null;
 
 // Phân loại tác vụ 
 if ($_GET['kindAction'] == 'showProductList') {
     $kindAction = 1;
 }
-else {
+else if ($_GET['kindAction'] == 'showDetailedProduct') {
     $kindAction = 2;
+}
+else {
+    $kindAction = 3;
 }
 
 // Phân luồng xử lý
@@ -143,7 +146,7 @@ if ($kindAction == 1) {
         ';
     }
 }
-else {
+else if ($kindAction == 2) {
     $idProduct = $_GET['idProduct'];
     include '../../model/generalAndMember/serviceModel.php';
     $productObject = json_decode($resultJson);
@@ -158,5 +161,21 @@ else {
         <button type="button" class="btn btn-success" onclick="window.location.href=',"'contactView.php'",'">LIÊN HỆ NGAY</button>
     </div>
     ';
+}
+else {
+    include '../../model/generalAndMember/serviceModel.php';
+    $productObjectArr = json_decode($resultJson);
+    $totalProduct = count($productObjectArr);
+    foreach ($productObjectArr as $product) {
+        if (!(strpos(strtolower($product->name_product),strtolower($_GET['keyWord'])) === false)) {
+            echo '
+            <div class="d-flex flex-row-reverse" onclick=(product("showDetailedProduct&idProduct=',$product->id_product,'"))>
+                <div class="bg-secondary zoom" style="margin-right:96px;height:45px;width:205px;border-style:solid;border-color:dark;border-width:1px;">
+                    <p class="mt-2 ml-2 font-weight-bold">',$product->name_product,'<p>
+                </div>
+            </div>
+            ';
+        }
+    }    
 }
 ?>

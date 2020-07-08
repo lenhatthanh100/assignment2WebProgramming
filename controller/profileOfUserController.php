@@ -59,21 +59,15 @@
             <h2><span class="badge badge-success mb-3 ml-3">Thay đổi mật khẩu</span></h2>
             <form class="form-horizontal" method="POST">
                 <div class="form-group">
-                    <label class="control-label col-sm-3 font-weight-bold" for="oldPasswordForm">Mật khẩu cũ</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="oldPasswordForm" id="oldPasswordForm" placeholder="Nhập mật khẩu cũ">
-                    </div>			    
-                </div>
-                <div class="form-group">
                     <label class="control-label col-sm-3 font-weight-bold" for="newPasswordForm">Mật khẩu mới</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="newPasswordForm" id="newPasswordForm" placeholder="Nhập mật khẩu mới">
+                        <input type="password" class="form-control" name="newPasswordForm" id="newPasswordForm" placeholder="Nhập mật khẩu mới">
                     </div>			    
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3 font-weight-bold" for="retypeNewPasswordForm">Nhập lại mật khẩu mới</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="retypeNewPasswordForm" id="retypeNewPasswordForm" placeholder="Nhập lại mật khẩu mới">
+                        <input type="password" class="form-control" name="retypeNewPasswordForm" id="retypeNewPasswordForm" placeholder="Nhập lại mật khẩu mới">
                     </div>			    
                 </div>
                 <div class="form-group ml-3">
@@ -83,14 +77,21 @@
             ';
         }
     }       
-    else if ($kindAction == 3 or $kindAction == 4) {
-        // Gửi dữ liệu sang model xử lý
-        // include '../../model/generalAndMember/profileOfUserModel.php';
-        if ($kindAction == 3) {
-            echo 'Sau khi nhấn nút OK sẽ gửi request với $kindAction = 3 để báo hiệu việc thay đổi thông tin cá nhân';
-        }
-        else {
-            echo 'Sau khi nhấn nút OK sẽ gửi request với $kindAction = 4 để báo hiệu việc thay đổi mật khẩu';
-        }        
+    else if ($kindAction == 3) {        
+        $name = $_GET['name'];
+        $phoneNumber = $_GET['phoneNumber'];
+        $email = $_GET['email'];
+        $address = $_GET['address'];
+        $id = $userObject->id;
+        $resultJson = null;
+        include '../model/profileOfUserModel.php'; // Gửi dữ liệu sang model xử lý
+        $userObject = json_decode($resultJson);
+        setcookie ("user", serialize($userObject), time() + (86400 * 30), "/");   // Tạo cookie lưu tài khoản user đã đăng nhập thành công
+    }
+    else {
+        $newPassword = $_GET['newPassword'];
+        $id = $userObject->id;
+        include '../model/profileOfUserModel.php'; // Gửi dữ liệu sang model xử lý
+        setcookie("user", "", time() - 3600, "/"); // Xóa cookie sau khi đổi mật khẩu
     }    
 ?>

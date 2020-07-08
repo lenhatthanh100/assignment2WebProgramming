@@ -47,7 +47,7 @@
                         </li>
                         <li class="nav-item ml-5">
                             <div class="mb-2">                
-                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUser()">',$userObject->name,'</span>
+                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUserReload()">',$userObject->name,'</span>
                                 <span class="badge badge-warning">Member</span>
                             </div>
                             <button type="button" class="btn btn-danger btn-sm" onclick="location.href=',"'../controller/signOut.php'",';">Đăng xuất</button>
@@ -55,6 +55,7 @@
                     </ul>
                 </div>	  	    
             </nav>
+            <script>var kindAccount = 1;</script>
             ';
 		}
 		// Trường hợp tài khoản staff
@@ -80,7 +81,7 @@
                         </li>
                         <li class="nav-item ml-5 pl-5">
                             <div class="mb-2">                
-                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUser()">',$userObject->name,'</span>
+                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUserReload()">',$userObject->name,'</span>
                                 <span class="badge badge-warning">Staff</span>
                             </div>
                             <button type="button" class="btn btn-danger btn-sm" onclick="location.href=',"'../controller/signOut.php'",';">Đăng xuất</button>
@@ -88,6 +89,7 @@
                     </ul>
                 </div>	  	    
             </nav>
+            <script>var kindAccount = 2;</script>
             ';
         }
         // Trường hợp tài khoản admin
@@ -110,7 +112,7 @@
                         </li>
                         <li class="nav-item ml-5 pl-5">
                             <div class="mb-2">                
-                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUser()">',$userObject->name,'</span>
+                                <span class="text-warning font-weight-bold mr-2" onclick="profileOfUserReload()">',$userObject->name,'</span>
                                 <span class="badge badge-warning">Admin</span>
                             </div>
                             <button type="button" class="btn btn-danger btn-sm" onclick="location.href=',"'../controller/signOut.php'",';">Đăng xuất</button>
@@ -118,28 +120,113 @@
                     </ul>
                 </div>	  	    
             </nav>
+            <script>var kindAccount = 3;</script>
             ';
         }
 	}
 	// Trường hợp chưa đăng nhập dùng URL truy cập
 	else {
 		header("location:404.php");
-	}	
+    }	
 	?>	
 	<!-- Dùng AJAX thay đổi danh sách thông báo -->
 	<script>
+    function profileOfUserReload() {
+        if(window.confirm("- Họ và tên: <?php echo $userObject->name ?> \n- ID: <?php echo $userObject->id ?> \n- Username: <?php echo $userObject->username ?> \n- Số điện thoại: <?php echo $userObject->phone_number ?> \n- Email: <?php echo $userObject->email ?> \n- Địa chỉ: <?php echo $userObject->address ?> \n- Quyền truy cập: Member \nBạn có muốn thay đổi thông tin cá nhân/ mật khẩu?")) {
+            location.reload();
+        }
+    }
 	function profileOfUser(str) {
 	  	var xhttp;	  	 
         xhttp = new XMLHttpRequest();
         // Phân luồng xử lý
-        // if (str == "formPersonalInformation" || str == "formPassword")
-	  	xhttp.onreadystatechange = function() {
-	    	if (this.readyState == 4 && this.status == 200) {
-	      		document.getElementById("profileOfUserForm").innerHTML = this.responseText;
-	    	}
-	  	};
-	  	xhttp.open("GET", "../../controller/profileOfUserController.php?kindAction="+str, true);
-	  	xhttp.send();	  		  	
+        if (str == "formPersonalInformation" || str == "formPassword") {
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("profileOfUserForm").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "../../controller/profileOfUserController.php?kindAction="+str, true);
+            xhttp.send();
+        }
+        else if (str == "changePersonalInformation") {
+            // Kiểm tra xem có trường dữ liệu nào bị bỏ trống hay không
+            if (!document.getElementById("nameForm").value || !document.getElementById("phoneNumberForm").value || !document.getElementById("emailForm").value || !document.getElementById("addressForm").value){
+                window.alert("Không được bỏ trống bất kỳ trường dữ liệu nào")
+            }
+            // Kiểm tra định dạng, độ dài của trường dữ liệu có hợp lệ không
+            else {
+                var name = document.getElementById("nameForm");
+                var phoneNumber = document.getElementById("phoneNumberForm");
+                var email = document.getElementById("emailForm");
+                var address = document.getElementById("addressForm");
+                var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9])+$/; 
+                if (name.value.length < 6 || name.value.length > 40) {
+                    window.alert("Họ và tên có độ dài từ 6-40 ký tự");
+                }
+                else if (phoneNumber.value.length != 10) {
+                    window.alert("Số điện thoại bao gồm 10 chữ số");
+                }
+                else if (phoneNumber.value.length != 10) {
+                    window.alert("Số điện thoại bao gồm 10 chữ số");
+                }
+                else if (!filter.test(email.value)) { 
+                    window.alert("Địa chỉ email hợp lệ phải có định dạng *@*.*");
+	            }
+	            else if (email.value.length > 40) {
+		            window.alert("Email có độ dài không quá 40 ký tự");		
+                }
+                else if (address.value.length > 200) {
+		            window.alert("Địa chỉ có độ dài không quá 200 ký tự");		
+                }
+                else {
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            window.alert("Thay đổi thông tin cá nhân thành công!");
+                            // Định hướng về trang chủ tùy theo loại tài khoản
+                            if (kindAccount == 1) {
+                                window.location.replace("generalAndMember/homeView.php");
+                            }
+                            else if (kindAccount == 2) {
+                                window.location.replace("staff/manageNewsView.php");
+                            }
+                            else {
+                                window.location.replace("admin/manageAccountView.php");
+                            }
+                        }
+                    };
+                    xhttp.open("GET", "../../controller/profileOfUserController.php?kindAction="+str+"&name="+name.value+"&phoneNumber="+phoneNumber.value+"&email="+email.value+"&address="+address.value, true);
+                    xhttp.send();
+                }
+            }
+        }
+        else {
+            // Kiểm tra xem có trường dữ liệu nào bị bỏ trống hay không
+            if (!document.getElementById("newPasswordForm").value || !document.getElementById("retypeNewPasswordForm").value){
+                window.alert("Không được bỏ trống bất kỳ trường dữ liệu nào")
+            }
+            // Kiểm tra định dạng, độ dài của trường dữ liệu có hợp lệ không
+            else {
+                var newPassword = document.getElementById("newPasswordForm");
+                var retypeNewPassword = document.getElementById("retypeNewPasswordForm");
+                if (newPassword.value.length < 6 || newPassword.value.length > 40) {
+                    window.alert("Mật khẩu mới có độ dài từ 6-40 ký tự");
+                }
+                else if (newPassword.value != retypeNewPassword.value) {
+                    window.alert("Nhập lại mật khẩu không chính xác");
+                }
+                else {
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            window.alert("Thay đổi mật khẩu thành công. Hãy đăng nhập lại");
+                            window.location.replace("generalAndMember/SignInView.php"); // Yêu cầu người dùng đăng nhập lại
+                        }
+                    };
+                    xhttp.open("GET", "../../controller/profileOfUserController.php?kindAction="+str+"&newPassword="+newPassword.value, true);
+                    xhttp.send();
+                }
+            }
+        }	  		  		  	
 	}
 	</script>
 	<!-- Nội dung trang thông tin cá nhân -->

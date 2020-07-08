@@ -102,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo 
             "<script>
                 window.alert('Tạo tài khoản cho nhân viên thành công');
+                window.location.replace('manageAccountView.php');
             </script>";
         }                
     }

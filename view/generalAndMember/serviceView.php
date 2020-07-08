@@ -31,6 +31,22 @@
 	?>
 	<!-- Dùng AJAX để hiện danh sách sản phẩm và truy cập nội dung chi tiết cho từng sản phẩm -->
 	<script>
+	function search(str) {
+		if (str.length == 0) {
+			document.getElementById("searchResult").innerHTML = "";
+			return;
+		} 
+		else {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("searchResult").innerHTML = this.responseText;
+				}
+			};
+		xmlhttp.open("GET", "../../controller/generalAndMember/serviceController.php?kindAction=searchProduct&keyWord="+str, true);
+		xmlhttp.send();
+  		}
+	}
 	function product(str) {
 	  	var xhttp; 	 
         xhttp = new XMLHttpRequest();
@@ -38,7 +54,11 @@
 		xhttp.onreadystatechange = function() {			
 			if (this.readyState == 4 && this.status == 200) {
 				if (str.indexOf("showDetailedProduct") != -1) {
+					// Cuộn lên đầu trang
 					window.scrollTo(0, 0);
+					// Xóa nội dung tìm kiếm
+					document.getElementById("searchBox").value = "";
+					document.getElementById("searchResult").innerHTML = "";
 				}				
 				document.getElementById("productList").innerHTML = this.responseText;
 			}
@@ -49,12 +69,15 @@
 	product("showProductList&brandProduct=Vsmart");
 	</script>
 	<!-- Thanh tìm kiếm -->
-	<nav class="navbar navbar-expand-sm bg-light navbar-dark marginTop mr-0">
-		<form class="form-inline ml-auto" action="/action_page.php">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-success" type="submit">Search</button>			
+	<nav class="navbar navbar-expand-sm bg-light navbar-dark marginTop pb-0">
+		<form class="form-inline ml-auto">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" onkeyup="search(this.value)" id="searchBox">
+			<button class="btn btn-success" type="button">Search</button>			
 		</form>		
-	</nav>	
+	</nav>
+	<!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
+	<div id="searchResult">		
+	</div>	
   	<!-- Danh mục sản phẩm -->
   	<div class="container mt-3">
 	  <h3><span class="badge badge-warning">Danh mục sản phẩm</span></h3>
