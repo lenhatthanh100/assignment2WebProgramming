@@ -163,6 +163,7 @@ else if ($kindAction == 2) {
     ';
 }
 else {
+    $brandProduct = $_GET['brandProduct'];
     include '../../model/generalAndMember/serviceModel.php';
     $productObjectArr = json_decode($resultJson);
     $totalProduct = count($productObjectArr);

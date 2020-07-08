@@ -31,6 +31,7 @@
 	?>
 	<!-- Dùng AJAX để hiện danh sách sản phẩm và truy cập nội dung chi tiết cho từng sản phẩm -->
 	<script>
+	var brandProduct = "Vsmart";
 	function search(str) {
 		if (str.length == 0) {
 			document.getElementById("searchResult").innerHTML = "";
@@ -43,7 +44,7 @@
 					document.getElementById("searchResult").innerHTML = this.responseText;
 				}
 			};
-		xmlhttp.open("GET", "../../controller/generalAndMember/serviceController.php?kindAction=searchProduct&keyWord="+str, true);
+		xmlhttp.open("GET", "../../controller/generalAndMember/serviceController.php?kindAction=searchProduct&keyWord="+str+"&brandProduct="+brandProduct, true);				
 		xmlhttp.send();
   		}
 	}
@@ -83,13 +84,13 @@
 	  <h3><span class="badge badge-warning">Danh mục sản phẩm</span></h3>
 		<ul class="nav nav-tabs text-info mt-3">
 			<li class="nav-item">
-				<a class="nav-link active" data-toggle="pill" onclick=(product("showProductList&brandProduct=Vsmart"))>VSMART</a>
+				<a class="nav-link active" data-toggle="pill" id="brandProductVsmart" onclick="product('showProductList&brandProduct=Vsmart');brandProduct='Vsmart';")>VSMART</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" data-toggle="pill" onclick=(product("showProductList&brandProduct=Vinfast"))>VINFAST</a>
+				<a class="nav-link" data-toggle="pill" onclick="product('showProductList&brandProduct=Vinfast');brandProduct='Vinfast';")>VINFAST</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" data-toggle="pill" onclick=(product("showProductList&brandProduct=Vinhomes"))>VINHOMES</a>
+				<a class="nav-link" data-toggle="pill" onclick="product('showProductList&brandProduct=Vinhomes');brandProduct='Vinhomes';"))>VINHOMES</a>
 			</li>
 		</ul>
 		<div class="tab-content" id="productList">

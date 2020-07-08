@@ -42,7 +42,7 @@
 			<!-- The slideshow -->
 		  	<div class="carousel-inner">
 			    <div class="carousel-item active scaleImage">
-			      	<img src="../img/carousel_landmark1.jpg" alt="carousel_landmark1">
+			      	<img src="../img/carousel_team.png" alt="carousel_team">
 			    </div>
 			    <div class="carousel-item scaleImage">
 			     	<img src="../img/carousel_landmark2.jpg" alt="carousel_landmark2">
