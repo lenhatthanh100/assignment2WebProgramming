@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -23,7 +23,7 @@
 		// Trường hợp tài khoản member, admin dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
@@ -31,11 +31,12 @@
 	}	
 	?>
 	<!-- Dùng AJAX thay đổi danh sách sản phẩm -->
-	<script>	
+	<script>document.getElementById("manageServiceView").setAttribute("class","nav-link titleOfNavbar active")</script>
+	<script>
 	function manageProduct(str) {
-		// Hiển thị danh sách sản phẩm hoặc form thêm sản phẩm mới	  
+		// Hiển thị danh sách sản phẩm hoặc form thêm sản phẩm mới
 		if (str == "showProductList" || str == "showAddProductForm") {
-			var xhttp;	  	 
+			var xhttp;
 	  		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
@@ -47,7 +48,7 @@
 			xhttp.send("kindAction="+str);
 		}
 		// Thêm sản phẩm mới
-	  	else if (str == "addProduct") {			
+	  	else if (str == "addProduct") {
 			// Kiểm tra xem có trường dữ liệu nào bị bỏ trống hay không
 			if ((!document.getElementById("Vsmart").checked && !document.getElementById("Vinfast").checked && !document.getElementById("Vinhomes").checked) || !document.getElementById("nameProductForm").value || !document.getElementById("linkImageForm").value || !document.getElementById("shortContentForm").value || !document.getElementById("longContentForm").value) {
 				alert("Không được bỏ trống bất kỳ trường dữ liệu nào");
@@ -68,7 +69,7 @@
 				var linkImage = document.getElementById("linkImageForm").value;
 				var shortContent = document.getElementById("shortContentForm").value;
 				var longContent = document.getElementById("longContentForm").value;
-				var xhttp;	  	 
+				var xhttp;
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -88,12 +89,12 @@
 				else {
 					xhttp.send("kindAction="+str+"&idCreater="+idCreater+"&brandProduct=Vinhomes"+"&nameProduct="+nameProduct+"&linkImage="+linkImage+"&shortContent="+shortContent+"&longContent="+longContent+"&timeCreate="+(new Date()).toLocaleString());
 				}
-			}	
+			}
 		}
 		// Xóa sản phẩm
 		else {
 			if (window.confirm('Xác nhận xóa sản phẩm?')) {
-				var xhttp;	  	 
+				var xhttp;
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -103,15 +104,15 @@
 				xhttp.open("POST", "../../controller/staff/manageServiceController.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send("kindAction="+str);
-			}			
-		}	  		  		  	
+			}
+		}
 	}
 	</script>
 	<!-- Nội dung quản lý dịch vụ, sản phẩm -->
 	<div class="container-fluid marginTop pt-5">
 		<div class="form-group">
 			<label class="text-primary font-weight-bold" for="manageProductSelect">Chọn tác vụ:</label>
-			<select class="form-control" id="manageProductSelect" name="manageProductSelect" onchange="manageProduct(this.value)">				
+			<select class="form-control" id="manageProductSelect" name="manageProductSelect" onchange="manageProduct(this.value)">
 		    	<option value="showProductList" selected="selected">Danh sách sản phẩm</option>
 		    	<option value="showAddProductForm">Thêm sản phẩm mới</option>
 		  	</select>
@@ -135,7 +136,7 @@
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
 		header("location:../404.php");
-	}	
+	}
 	?>
 </body>
 </html>

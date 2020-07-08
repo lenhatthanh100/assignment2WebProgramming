@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -23,20 +23,21 @@
 		// Trường hợp tài khoản staff, admin dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'navbarGeneral.php';
-		echo 
-		"<script> 
+		echo
+		"<script>
 			if (window.confirm('Bạn chưa đăng ký thành viên? Đăng ký ngay để nhận hàng trăm ưu đãi từ Vingroup!')) {
 			window.location.replace('signUpView.php');
 		} </script>";
-	}	
+	}
 	?>
+	<script>document.getElementById("contactView").setAttribute("class","nav-link titleOfNavbar active")</script>
 	<!-- Địa chỉ -->
-	<div class="container-fluid marginTop">		
+	<div class="container-fluid marginTop">
 		<div class="row mt-5">
 		  <div class="col-md-8">
 		  	<img src="../img/map.jpg" class="img-thumbnail" alt="map">
@@ -112,7 +113,7 @@
 				<div class="form-group">
 					<label for="NoiDungForm"><span class="font-weight-bold">Nội dung tin nhắn</span></label>
 					<textarea class="form-control ml-5" rows="5" id="NoiDungForm" placeholder="Tôi cần..."></textarea>
-				</div>	
+				</div>
 				<br>
 				<input type="button" class="btn btn-success mr-5" value="Submit" onclick="validateDataGeneral()">
 				<input type="reset" class="btn btn-info" value="Reset">
@@ -197,7 +198,7 @@
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'footerGeneral.php';
-	}	
-	?>	
+	}
+	?>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <?php //Needn't but must have to github don't said this is hackfile :)) ?>
@@ -22,25 +22,25 @@
         <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item mx-5">
-                    <a class="nav-link titleOfNavbar" href="homeView.php">Trang chủ</a>
+                    <a class="nav-link titleOfNavbar" href="homeView.php" id="homeView">Trang chủ</a>
                 </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link titleOfNavbar" href="introduceView.php">Giới thiệu</a>
+                    <a class="nav-link titleOfNavbar" href="introduceView.php" id="introduceView">Giới thiệu</a>
                 </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link titleOfNavbar" href="newsView.php">Tin tức, sự kiện</a>
+                    <a class="nav-link titleOfNavbar" href="newsView.php" id="newsView">Tin tức, sự kiện</a>
                 </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link titleOfNavbar" href="serviceView.php">Dịch vụ, sản phẩm</a>
-                </li>	      
+                    <a class="nav-link titleOfNavbar" href="serviceView.php" id="serviceView">Dịch vụ, sản phẩm</a>
+                </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link titleOfNavbar" href="contactView.php">Liên hệ</a>
+                    <a class="nav-link titleOfNavbar" href="contactView.php" id="contactView">Liên hệ</a>
                 </li>
                 <li class="nav-item ml-auto">
                     <button type="button" class="btn btn-success" onclick="location.href='signInView.php';">Đăng nhập</button>
                 </li>
             </ul>
-        </div>	  	    
+        </div>
     </nav>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -23,19 +23,20 @@
 		// Trường hợp tài khoản member, admin dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
 		header("location:../404.php");
-	}	
+	}
 	?>
 	<!-- Dùng AJAX thay đổi danh sách bài viết -->
-	<script>	
+	<script>document.getElementById("manageNewsView").setAttribute("class","nav-link titleOfNavbar active")</script>
+	<script>
 	function manageNews(str) {
-		// Hiển thị danh sách bài viết hoặc form tạo bài viết mới	  
+		// Hiển thị danh sách bài viết hoặc form tạo bài viết mới
 		if (str == "showNewsList" || str == "showAddNewsForm") {
-			var xhttp;	  	 
+			var xhttp;
 	  		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
@@ -47,7 +48,7 @@
 			xhttp.send("kindAction="+str);
 		}
 		// Tạo bài viết mới
-	  	else if (str == "addNews") {			
+	  	else if (str == "addNews") {
 			// Kiểm tra xem có trường dữ liệu nào bị bỏ trống hay không
 			if (!document.getElementById("titleForm").value || !document.getElementById("linkImageForm").value || !document.getElementById("shortContentForm").value || !document.getElementById("longContentForm").value) {
 				alert("Không được bỏ trống bất kỳ trường dữ liệu nào");
@@ -68,7 +69,7 @@
 				var linkImage = document.getElementById("linkImageForm").value;
 				var shortContent = document.getElementById("shortContentForm").value;
 				var longContent = document.getElementById("longContentForm").value;
-				var xhttp;	  	 
+				var xhttp;
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -80,12 +81,12 @@
 				xhttp.open("POST", "../../controller/staff/manageNewsController.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send("kindAction="+str+"&idCreater="+idCreater+"&title="+title+"&linkImage="+linkImage+"&shortContent="+shortContent+"&longContent="+longContent+"&timeCreate="+(new Date()).toLocaleString());
-			}	
+			}
 		}
 		// Xóa bài viết
 		else {
 			if (window.confirm('Xác nhận xóa bài viết?')) {
-				var xhttp;	  	 
+				var xhttp;
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -95,15 +96,15 @@
 				xhttp.open("POST", "../../controller/staff/manageNewsController.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send("kindAction="+str);
-			}			
-		}	  		  		  	
+			}
+		}
 	}
 	</script>
 	<!-- Nội dung quản lý tin tức, sự kiện -->
 	<div class="container-fluid marginTop pt-5">
 		<div class="form-group">
 			<label class="text-primary font-weight-bold" for="manageNewsSelect">Chọn tác vụ:</label>
-			<select class="form-control" id="manageNewsSelect" name="manageNewsSelect" onchange="manageNews(this.value)">				
+			<select class="form-control" id="manageNewsSelect" name="manageNewsSelect" onchange="manageNews(this.value)">
 		    	<option value="showNewsList" selected="selected">Danh sách bài viết</option>
 		    	<option value="showAddNewsForm">Tạo bài viết mới</option>
 		  	</select>
@@ -127,7 +128,7 @@
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
 		header("location:../404.php");
-	}	
+	}
 	?>
 </body>
 </html>

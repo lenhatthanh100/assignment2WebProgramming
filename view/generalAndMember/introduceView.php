@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -22,13 +22,14 @@
 		// Trường hợp tài khoản staff, admin dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'navbarGeneral.php';
-	}	
+	}
 	?>
+	<script>document.getElementById("introduceView").setAttribute("class","nav-link titleOfNavbar active")</script>
 	<!-- Nội dung giới thiệu -->
 	<div>
 		<!-- Text nội dung giới thiệu -->
@@ -46,7 +47,7 @@
 		<!-- Lĩnh vực hoạt động -->
 		<div class="container">
 			<h1>LĨNH VỰC HOẠT ĐỘNG</h1>
-			
+
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs nav-pills">
 				<li class="nav-item">
@@ -171,10 +172,10 @@
 								</div>
 					  		</div>
 						</div>
-			  		</div>			  	
+			  		</div>
 				</div>
-			</div>			
-		</div>	
+			</div>
+		</div>
 	</div>
 	<!-- Import thêm footer -->
     <?php
@@ -192,7 +193,7 @@
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'footerGeneral.php';
-	}	
+	}
 	?>
 </body>
 </html>

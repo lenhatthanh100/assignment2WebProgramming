@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -22,16 +22,17 @@
 		// Trường hợp tài khoản member, staff dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
 		header("location:../404.php");
-	}	
+	}
 	?>
+	<script>document.getElementById("manageAccountView").setAttribute("class","nav-link titleOfNavbar active")</script>
 	<script>
 	function showAccountList(str) {
-	  	var xhttp;	  	 
+	  	var xhttp;
 	  	xhttp = new XMLHttpRequest();
 	  	xhttp.onreadystatechange = function() {
 	    	if (this.readyState == 4 && this.status == 200) {
@@ -39,9 +40,9 @@
 	    	}
 	  	};
 	  	xhttp.open("GET", "../../controller/admin/manageAccountController.php?kindAccount="+str, true);
-	  	xhttp.send();	  		  	
+	  	xhttp.send();
 	}
-	</script>	
+	</script>
 	<!-- Nội dung quản lý tài khoản -->
 	<div class="container-fluid marginTop pt-5">
 		<div class="form-group">
@@ -53,7 +54,7 @@
 		</div>
 		<script type="text/javascript"> showAccountList("member"); </script>
     	<div id="accountList"></div>
-    </div>    
+    </div>
 	<!-- Import thêm footer -->
     <?php
 	if(isset($_COOKIE["user"])) {
@@ -70,7 +71,7 @@
 	// Trường hợp chưa đăng nhập dùng URL để truy cập
 	else {
 		header("location:../404.php");
-	}	
+	}
 	?>
 </body>
 </html>

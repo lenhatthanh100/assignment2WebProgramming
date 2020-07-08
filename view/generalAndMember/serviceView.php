@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Import thêm navbar -->
@@ -22,13 +22,14 @@
 		// Trường hợp tài khoản staff, admin dùng URL để truy cập
 		else {
 			header("location:../404.php");
-		}	
+		}
 	}
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'navbarGeneral.php';
-	}	
+	}
 	?>
+	<script>document.getElementById("serviceView").setAttribute("class","nav-link titleOfNavbar active")</script>
 	<!-- Dùng AJAX để hiện danh sách sản phẩm và truy cập nội dung chi tiết cho từng sản phẩm -->
 	<script>
 	var brandProduct = "Vsmart";
@@ -36,7 +37,7 @@
 		if (str.length == 0) {
 			document.getElementById("searchResult").innerHTML = "";
 			return;
-		} 
+		}
 		else {
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function() {
@@ -44,15 +45,15 @@
 					document.getElementById("searchResult").innerHTML = this.responseText;
 				}
 			};
-		xmlhttp.open("GET", "../../controller/generalAndMember/serviceController.php?kindAction=searchProduct&keyWord="+str+"&brandProduct="+brandProduct, true);				
+		xmlhttp.open("GET", "../../controller/generalAndMember/serviceController.php?kindAction=searchProduct&keyWord="+str+"&brandProduct="+brandProduct, true);
 		xmlhttp.send();
   		}
 	}
 	function product(str) {
-	  	var xhttp; 	 
+	  	var xhttp;
         xhttp = new XMLHttpRequest();
         // Phân luồng xử lý
-		xhttp.onreadystatechange = function() {			
+		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				if (str.indexOf("showDetailedProduct") != -1) {
 					// Cuộn lên đầu trang
@@ -60,7 +61,7 @@
 					// Xóa nội dung tìm kiếm
 					document.getElementById("searchBox").value = "";
 					document.getElementById("searchResult").innerHTML = "";
-				}				
+				}
 				document.getElementById("productList").innerHTML = this.responseText;
 			}
 		};
@@ -73,12 +74,12 @@
 	<nav class="navbar navbar-expand-sm bg-light navbar-dark marginTop pb-0">
 		<form class="form-inline ml-auto">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search" onkeyup="search(this.value)" id="searchBox">
-			<button class="btn btn-success" type="button">Search</button>			
-		</form>		
+			<button class="btn btn-success" type="button">Search</button>
+		</form>
 	</nav>
 	<!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
-	<div id="searchResult">		
-	</div>	
+	<div id="searchResult">
+	</div>
   	<!-- Danh mục sản phẩm -->
   	<div class="container mt-3">
 	  <h3><span class="badge badge-warning">Danh mục sản phẩm</span></h3>
@@ -112,7 +113,7 @@
 	// Trường hợp chưa đăng nhập
 	else {
 		include 'footerGeneral.php';
-	}	
-	?>	
+	}
+	?>
 </body>
 </html>

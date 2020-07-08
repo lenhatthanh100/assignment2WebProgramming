@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <?php $userObject = unserialize($_COOKIE["user"]); ?>
@@ -29,32 +29,32 @@
         <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="homeView.php">Trang chủ</a>
+                    <a class="nav-link titleOfNavbar" href="homeView.php" id="homeView">Trang chủ</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="introduceView.php">Giới thiệu</a>
+                    <a class="nav-link titleOfNavbar" href="introduceView.php" id="introduceView">Giới thiệu</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="newsView.php">Tin tức, sự kiện</a>
+                    <a class="nav-link titleOfNavbar" href="newsView.php" id="newsView">Tin tức, sự kiện</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="serviceView.php">Dịch vụ, sản phẩm</a>
-                </li>	      
-                <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="contactView.php">Liên hệ</a>
+                    <a class="nav-link titleOfNavbar" href="serviceView.php" id="serviceView">Dịch vụ, sản phẩm</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link titleOfNavbar" href="notificationView.php">Thông báo</a>
+                    <a class="nav-link titleOfNavbar" href="contactView.php" id="contactView">Liên hệ</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link titleOfNavbar" href="notificationView.php" id="notificationView">Thông báo</a>
                 </li>
                 <li class="nav-item ml-5">
-                    <div class="mb-2">                
+                    <div class="mb-2">
                         <span class="text-warning font-weight-bold mr-2" onclick="profileOfUser()"> <?php $userObject = unserialize($_COOKIE["user"]); echo $userObject->name; ?> </span>
                         <span class="badge badge-warning">Member</span>
                     </div>
                     <button type="button" class="btn btn-danger btn-sm" onclick="location.href='../../controller/signOut.php';">Đăng xuất</button>
                 </li>
             </ul>
-        </div>	  	    
+        </div>
     </nav>
 </body>
 </html>
