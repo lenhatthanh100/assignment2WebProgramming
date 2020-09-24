@@ -1,5 +1,5 @@
 # assignment2WebProgramming
-Server is built in Microsoft Azure with IP address http://40.87.111.175/
+Server is built in Microsoft Azure with IP address http://40.87.111.175/. It was be deleted.
 
 Platform and framework for this project:
 - Frontend: HTML5, CSS3, Bootstrap 4
